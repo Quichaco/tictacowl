@@ -1,0 +1,13 @@
+name: xogame
+publish_to: "none"
+
+environment:
+  sdk: ^3.10.8
+
+workspace:
+  - apps/xoapp
+  - packages/tictactoe_domain
+  - packages/tictactoe_kit
+
+dev_dependencies:
+  melos: ^7.4.0
