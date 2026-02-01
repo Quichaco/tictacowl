@@ -1,0 +1,12 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Jeu XO",
+  "welcomeTitle": "Jeu XO",
+  "enterName": "Entrez votre nom",
+  "continueButton": "Continuer",
+  "homeGreeting": "Bienvenue, {name} !",
+  "playButton": "Jouer",
+  "homeGreetingFallback": "Bienvenue !",
+  "saveUserError": "Impossible de sauvegarder. Veuillez réessayer.",
+  "genericError": "Une erreur est survenue. Veuillez réessayer."
+}

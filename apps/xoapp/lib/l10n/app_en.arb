@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "XO Game",
+  "welcomeTitle": "XO Game",
+  "enterName": "Enter your name",
+  "continueButton": "Continue",
+  "homeGreeting": "Welcome, {name}!",
+  "@homeGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playButton": "Play",
+  "homeGreetingFallback": "Welcome!",
+  "saveUserError": "Failed to save user. Please try again.",
+  "genericError": "An error occurred. Please try again."
+}

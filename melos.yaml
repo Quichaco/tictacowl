@@ -8,19 +8,3 @@ command:
   bootstrap:
     runPubGetInParallel: true
 
-scripts:
-  analyze:
-    run: melos exec -- dart analyze .
-    description: Run static analysis in all packages
-
-  test:
-    run: melos exec --fail-fast -- "dart test"
-    description: Run Dart tests in all packages (Flutter tests are separate)
-
-  flutter_test:
-    run: melos exec --fail-fast --flutter -- "flutter test"
-    description: Run flutter test in flutter packages
-
-  gen:
-    run: melos exec --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
-    description: Run build_runner in all packages
