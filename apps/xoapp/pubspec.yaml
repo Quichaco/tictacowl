@@ -13,18 +13,15 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  core:
+    path: ../../packages/core
   ui_components:
     path: ../../packages/ui_components
-  tictactoe_kit:
-    path: ../../packages/tictactoe_kit
-  tictactoe_domain:
-    path: ../../packages/tictactoe_domain
-  user_domain:
-    path: ../../packages/user_domain
+  tictactoe_feature:
+    path: ../../packages/tictactoe_feature
   hooks_riverpod: ^3.1.0
   flutter_hooks: ^0.21.3+1
   riverpod_annotation: ^4.0.0
-  shared_preferences: ^2.5.4
   go_router: ^17.0.1
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0

@@ -1,0 +1,19 @@
+import 'package:tictactoe_domain/src/models/game_state.dart';
+
+class NextRoundUseCase {
+  const NextRoundUseCase();
+
+  /// Advances to next round. Returns unchanged state if game not over or match ended.
+  GameState call(GameState state) {
+    if (!state.isGameOver || state.isMatchOver) return state;
+
+    return GameState.create(
+      gridSize: state.gridSize,
+      scoreX: state.scoreX,
+      scoreO: state.scoreO,
+      currentRound: state.currentRound + 1,
+      totalRounds: state.totalRounds,
+      playerName: state.playerName,
+    );
+  }
+}

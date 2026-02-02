@@ -1,0 +1,23 @@
+name: core
+description: Shared infrastructure providers and utilities.
+version: 0.0.1
+publish_to: 'none'
+resolution: workspace
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  flutter:
+    sdk: flutter
+  riverpod_annotation: ^4.0.0
+  shared_preferences: ^2.5.0
+  user_domain:
+    path: ../user_domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.10.5
+  riverpod_generator: ^4.0.0+1

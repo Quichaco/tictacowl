@@ -1,0 +1,17 @@
+{
+  "@@locale": "en",
+  "roundTitle": "Round {current}",
+  "@roundTitle": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      }
+    }
+  },
+  "aiName": "AI XO",
+  "nextRoundButton": "Next round",
+  "replayButton": "Replay",
+  "difficultyEasy": "Easy",
+  "difficultyMedium": "Medium",
+  "difficultyHard": "Hard"
+}

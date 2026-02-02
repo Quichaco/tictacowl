@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ui_components/src/extensions/build_context_extensions.dart';
+import 'package:ui_components/src/theme/app_durations.dart';
 import 'package:ui_components/src/theme/app_radius.dart';
 import 'package:ui_components/src/theme/app_spacing.dart';
+import 'package:ui_components/src/widgets/buttons/control_button.dart';
 
 class HorizontalPicker<T> extends HookWidget {
   const HorizontalPicker({
@@ -57,14 +59,14 @@ class HorizontalPicker<T> extends HookWidget {
         ),
         child: Row(
           children: [
-            _ControlButton(
+            ControlButton(
               icon: Icons.chevron_left,
               onTap: isFirst ? null : previous,
             ),
             Expanded(
               child: ClipRect(
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
+                  duration: AppDurations.fast,
                   switchInCurve: Curves.easeInOut,
                   switchOutCurve: Curves.easeInOut,
                   transitionBuilder: (child, animation) {
@@ -109,43 +111,11 @@ class HorizontalPicker<T> extends HookWidget {
                 ),
               ),
             ),
-            _ControlButton(
+            ControlButton(
               icon: Icons.chevron_right,
               onTap: isLast ? null : next,
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ControlButton extends StatelessWidget {
-  const _ControlButton({required this.icon, this.onTap});
-
-  final IconData icon;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colorScheme;
-    final enabled = onTap != null;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(
-          color: enabled
-              ? colors.primary.withValues(alpha: 0.1)
-              : colors.onSurface.withValues(alpha: 0.05),
-          borderRadius: BorderRadius.circular(AppRadius.sm),
-        ),
-        child: Icon(
-          icon,
-          color: enabled ? colors.primary : context.theme.disabledColor,
-          size: 20,
         ),
       ),
     );

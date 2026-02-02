@@ -1,11 +1,11 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tictactoe_feature/tictactoe_feature.dart';
 import 'package:xoapp/l10n/gen/app_localizations.dart';
-import 'package:xoapp/src/common/logger/dev_logger.dart';
 import 'package:xoapp/src/common/observers/app_provider_observer.dart';
-import 'package:xoapp/src/common/providers/shared_preferences_provider.dart';
 import 'package:xoapp/src/presentation/viewmodels/locale_viewmodel.dart';
 import 'package:xoapp/src/presentation/viewmodels/theme_viewmodel.dart';
 import 'package:xoapp/src/routing/app_router.dart';
@@ -13,11 +13,15 @@ import 'package:xoapp/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   final prefs = await SharedPreferences.getInstance();
 
   runApp(
     ProviderScope(
-      observers: [AppProviderObserver(DevLogger())],
+      observers: [AppProviderObserver(const DevLogger('XoApp'))],
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
       ],
@@ -43,6 +47,7 @@ class XoApp extends ConsumerWidget {
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
+        GameLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

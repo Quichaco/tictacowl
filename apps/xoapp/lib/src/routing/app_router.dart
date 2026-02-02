@@ -1,9 +1,10 @@
+import 'package:core/core.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:tictactoe_feature/tictactoe_feature.dart';
 import 'package:xoapp/src/presentation/screens/home_screen.dart';
 import 'package:xoapp/src/presentation/screens/settings_screen.dart';
 import 'package:xoapp/src/presentation/screens/welcome_screen.dart';
-import 'package:xoapp/src/presentation/viewmodels/user_viewmodel.dart';
 import 'package:xoapp/src/routing/app_routes.dart';
 
 part 'app_router.g.dart';
@@ -29,10 +30,16 @@ GoRouter appRouter(Ref ref) {
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomeScreen(),
-      ),
-      GoRoute(
-        path: AppRoutes.settings,
-        builder: (context, state) => const SettingsScreen(),
+        routes: [
+          GoRoute(
+            path: AppRoutes.settingsSegment,
+            builder: (context, state) => const SettingsScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.gameSegment,
+            builder: (context, state) => const GameScreen(),
+          ),
+        ],
       ),
     ],
   );

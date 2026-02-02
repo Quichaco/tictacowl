@@ -1,24 +1,17 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tictactoe_domain/src/models/difficulty.dart';
 
-class GameConfig {
-  const GameConfig({
-    this.difficulty = Difficulty.easy,
-    this.rounds = 3,
-  });
+part 'game_config.freezed.dart';
 
-  final Difficulty difficulty;
-  final int rounds;
+@freezed
+abstract class GameConfig with _$GameConfig {
+  const GameConfig._();
+
+  const factory GameConfig({
+    @Default(Difficulty.easy) Difficulty difficulty,
+    @Default(3) int rounds,
+  }) = _GameConfig;
 
   static const minRounds = 1;
   static const maxRounds = 10;
-
-  GameConfig copyWith({
-    Difficulty? difficulty,
-    int? rounds,
-  }) {
-    return GameConfig(
-      difficulty: difficulty ?? this.difficulty,
-      rounds: rounds ?? this.rounds,
-    );
-  }
 }

@@ -25,9 +25,6 @@
   "themeSystem": "System",
   "languageLabel": "Language",
   "languageName": "English",
-  "difficultyEasy": "Easy",
-  "difficultyMedium": "Medium",
-  "difficultyHard": "Hard",
   "roundsLabel": "{count, plural, =1{Round} other{Rounds}}",
   "@roundsLabel": {
     "placeholders": {

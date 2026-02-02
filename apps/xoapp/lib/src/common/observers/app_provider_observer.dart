@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:xoapp/src/common/logger/app_logger.dart';
 
 final class AppProviderObserver extends ProviderObserver {
   final AppLogger _logger;

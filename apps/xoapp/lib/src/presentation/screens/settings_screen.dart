@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,7 +9,6 @@ import 'package:xoapp/src/common/extensions/locale_extensions.dart';
 import 'package:xoapp/src/common/extensions/theme_mode_extensions.dart';
 import 'package:xoapp/src/presentation/viewmodels/locale_viewmodel.dart';
 import 'package:xoapp/src/presentation/viewmodels/theme_viewmodel.dart';
-import 'package:xoapp/src/presentation/viewmodels/user_viewmodel.dart';
 
 class SettingsScreen extends HookConsumerWidget {
   const SettingsScreen({super.key});

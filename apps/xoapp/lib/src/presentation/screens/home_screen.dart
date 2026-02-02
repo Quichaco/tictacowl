@@ -1,12 +1,10 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tictactoe_domain/tictactoe_domain.dart';
+import 'package:tictactoe_feature/tictactoe_feature.dart';
 import 'package:ui_components/ui_components.dart';
 import 'package:xoapp/src/common/extensions/build_context_extensions.dart';
-import 'package:xoapp/src/common/extensions/difficulty_extensions.dart';
-import 'package:xoapp/src/presentation/viewmodels/game_config_viewmodel.dart';
-import 'package:xoapp/src/presentation/viewmodels/user_viewmodel.dart';
 import 'package:xoapp/src/routing/app_routes.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -46,14 +44,13 @@ class HomeScreen extends ConsumerWidget {
                   const _RoundsSelector(),
                   const SizedBox(height: AppSpacing.md),
                   GradientButton(
-                    onPressed: () {
-                    },
+                    onPressed: () => context.go(AppRoutes.game),
                     icon: Icons.play_arrow,
                     label: l10n.playButton,
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   GradientButton.secondary(
-                    onPressed: () => context.push(AppRoutes.settings),
+                    onPressed: () => context.go(AppRoutes.settings),
                     icon: Icons.settings,
                     label: l10n.settingsButton,
                   ),
@@ -75,7 +72,7 @@ class _DifficultyPicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = GameLocalizations.of(context)!;
     final difficulty = ref.watch(
       gameConfigViewModelProvider.select((c) => c.difficulty),
     );
