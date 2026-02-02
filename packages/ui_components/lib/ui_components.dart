@@ -18,4 +18,6 @@ export 'src/widgets/display/xo_loader.dart';
 
 // Widgets — Inputs
 export 'src/widgets/inputs/editable_field.dart';
+export 'src/widgets/inputs/horizontal_picker.dart';
+export 'src/widgets/inputs/round_counter.dart';
 export 'src/widgets/inputs/select_field.dart';

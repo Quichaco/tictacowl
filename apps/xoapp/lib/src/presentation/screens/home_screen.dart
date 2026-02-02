@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:ui_components/ui_components.dart';
 import 'package:xoapp/src/common/extensions/build_context_extensions.dart';
+import 'package:xoapp/src/common/extensions/difficulty_extensions.dart';
+import 'package:xoapp/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:xoapp/src/presentation/viewmodels/user_viewmodel.dart';
 import 'package:xoapp/src/routing/app_routes.dart';
 
@@ -38,6 +41,10 @@ class HomeScreen extends ConsumerWidget {
                     style: context.textTheme.titleMedium,
                   ),
                   const Spacer(),
+                  const _DifficultyPicker(),
+                  const SizedBox(height: AppSpacing.sm),
+                  const _RoundsSelector(),
+                  const SizedBox(height: AppSpacing.md),
                   GradientButton(
                     onPressed: () {
                     },
@@ -59,6 +66,47 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _DifficultyPicker extends ConsumerWidget {
+  const _DifficultyPicker();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final difficulty = ref.watch(
+      gameConfigViewModelProvider.select((c) => c.difficulty),
+    );
+
+    return HorizontalPicker<Difficulty>(
+      values: Difficulty.values,
+      selected: difficulty,
+      labelOf: (d) => d.label(l10n),
+      emojiOf: (d) => d.emoji,
+      onChanged: (d) =>
+          ref.read(gameConfigViewModelProvider.notifier).setDifficulty(d),
+    );
+  }
+}
+
+class _RoundsSelector extends ConsumerWidget {
+  const _RoundsSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final rounds = ref.watch(
+      gameConfigViewModelProvider.select((c) => c.rounds),
+    );
+
+    return RoundCounter(
+      value: rounds,
+      min: GameConfig.minRounds,
+      max: GameConfig.maxRounds,
+      labelOf: (count) => context.l10n.roundsLabel(count),
+      onChanged: (r) =>
+          ref.read(gameConfigViewModelProvider.notifier).setRounds(r),
     );
   }
 }

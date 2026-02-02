@@ -17,5 +17,16 @@
   "themeDark": "Sombre",
   "themeSystem": "Système",
   "languageLabel": "Langue",
-  "languageName": "Français"
+  "languageName": "Français",
+  "difficultyEasy": "Facile",
+  "difficultyMedium": "Moyen",
+  "difficultyHard": "Difficile",
+  "roundsLabel": "{count, plural, =1{Manche} other{Manches}}",
+  "@roundsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

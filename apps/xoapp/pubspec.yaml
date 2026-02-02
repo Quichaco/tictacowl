@@ -17,6 +17,8 @@ dependencies:
     path: ../../packages/ui_components
   tictactoe_kit:
     path: ../../packages/tictactoe_kit
+  tictactoe_domain:
+    path: ../../packages/tictactoe_domain
   user_domain:
     path: ../../packages/user_domain
   hooks_riverpod: ^3.1.0
