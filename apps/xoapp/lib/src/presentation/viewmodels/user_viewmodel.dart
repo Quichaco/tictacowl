@@ -4,7 +4,7 @@ import 'package:xoapp/src/common/providers/usecase_providers.dart';
 
 part 'user_viewmodel.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class UserViewModel extends _$UserViewModel {
   @override
   Future<User?> build() => ref.watch(getUserUseCaseProvider).call();

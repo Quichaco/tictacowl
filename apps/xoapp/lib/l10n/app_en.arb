@@ -15,5 +15,14 @@
   "playButton": "Play",
   "homeGreetingFallback": "Welcome!",
   "saveUserError": "Failed to save user. Please try again.",
-  "genericError": "An error occurred. Please try again."
+  "genericError": "An error occurred. Please try again.",
+  "settingsButton": "Settings",
+  "settingsTitle": "Settings",
+  "editName": "Your name",
+  "themeLabel": "Theme",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System",
+  "languageLabel": "Language",
+  "languageName": "English"
 }

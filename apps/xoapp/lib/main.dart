@@ -6,6 +6,8 @@ import 'package:xoapp/l10n/gen/app_localizations.dart';
 import 'package:xoapp/src/common/logger/dev_logger.dart';
 import 'package:xoapp/src/common/observers/app_provider_observer.dart';
 import 'package:xoapp/src/common/providers/shared_preferences_provider.dart';
+import 'package:xoapp/src/presentation/viewmodels/locale_viewmodel.dart';
+import 'package:xoapp/src/presentation/viewmodels/theme_viewmodel.dart';
 import 'package:xoapp/src/routing/app_router.dart';
 import 'package:xoapp/theme/app_theme.dart';
 
@@ -30,11 +32,15 @@ class XoApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
+    final themeMode = ref.watch(themeViewModelProvider);
+    final locale = ref.watch(localeViewModelProvider);
 
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
+      themeMode: themeMode,
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

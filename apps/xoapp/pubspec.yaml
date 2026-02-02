@@ -13,6 +13,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  ui_components:
+    path: ../../packages/ui_components
   tictactoe_kit:
     path: ../../packages/tictactoe_kit
   user_domain:

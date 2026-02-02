@@ -1,12 +1,21 @@
 {
   "@@locale": "fr",
-  "appTitle": "Jeu XO",
-  "welcomeTitle": "Jeu XO",
+  "appTitle": "XO Game",
+  "welcomeTitle": "XO Game",
   "enterName": "Entrez votre nom",
   "continueButton": "Continuer",
   "homeGreeting": "Bienvenue, {name} !",
   "playButton": "Jouer",
   "homeGreetingFallback": "Bienvenue !",
   "saveUserError": "Impossible de sauvegarder. Veuillez réessayer.",
-  "genericError": "Une erreur est survenue. Veuillez réessayer."
+  "genericError": "Une erreur est survenue. Veuillez réessayer.",
+  "settingsButton": "Paramètres",
+  "settingsTitle": "Paramètres",
+  "editName": "Votre nom",
+  "themeLabel": "Thème",
+  "themeLight": "Clair",
+  "themeDark": "Sombre",
+  "themeSystem": "Système",
+  "languageLabel": "Langue",
+  "languageName": "Français"
 }

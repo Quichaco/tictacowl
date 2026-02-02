@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:user_domain/user_domain.dart';
 import 'package:xoapp/src/common/providers/shared_preferences_provider.dart';
 
-part 'user_local_datasource_impl.g.dart';
+part 'user_local_datasource.g.dart';
 
+abstract class UserLocalDatasource {
+  Future<void> saveUser(Map<String, dynamic> json);
+  Future<Map<String, dynamic>?> getUser();
+}
 
 class UserLocalDatasourceImpl implements UserLocalDatasource {
-  static const _key = 'user';
+  static const _key = 'user2';
   final SharedPreferences _prefs;
 
   UserLocalDatasourceImpl(this._prefs);

@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user_domain/user_domain.dart';
-import 'package:xoapp/src/data/datasources/user_local_datasource_impl.dart';
+import 'package:xoapp/src/data/datasources/user_local_datasource.dart';
 
 part 'user_repository_impl.g.dart';
 

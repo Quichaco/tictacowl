@@ -8,6 +8,7 @@ workspace:
   - apps/xoapp
   - packages/tictactoe_domain
   - packages/tictactoe_kit
+  - packages/ui_components
   - packages/user_domain
 
 dev_dependencies:

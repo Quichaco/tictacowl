@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:xoapp/theme/app_colors.dart';
-import 'package:xoapp/theme/app_radius.dart';
-import 'package:xoapp/theme/app_spacing.dart';
+import 'package:ui_components/ui_components.dart';
 
 abstract class AppTheme {
   static final _inputTheme = InputDecorationTheme(
     border: OutlineInputBorder(borderRadius: AppRadius.input),
-    enabledBorder: OutlineInputBorder(borderRadius: AppRadius.input),
-    focusedBorder: OutlineInputBorder(borderRadius: AppRadius.input),
-    errorBorder: OutlineInputBorder(borderRadius: AppRadius.input),
-    focusedErrorBorder: OutlineInputBorder(borderRadius: AppRadius.input),
-    disabledBorder: OutlineInputBorder(borderRadius: AppRadius.input),
     filled: true,
     contentPadding: EdgeInsets.symmetric(
       horizontal: AppSpacing.md,
@@ -19,17 +12,25 @@ abstract class AppTheme {
   );
 
   static ThemeData get light => ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.seed),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.purple,
+        ).copyWith(
+          secondary: AppColors.pink,
+          onPrimary: Colors.white,
+        ),
         inputDecorationTheme: _inputTheme,
+        extensions: const [BrandTheme.light],
       );
 
   static ThemeData get dark => ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.seed,
+          seedColor: AppColors.purple,
           brightness: Brightness.dark,
+        ).copyWith(
+          secondary: AppColors.pink,
+          onPrimary: Colors.white,
         ),
-        useMaterial3: true,
         inputDecorationTheme: _inputTheme,
+        extensions: const [BrandTheme.dark],
       );
 }
