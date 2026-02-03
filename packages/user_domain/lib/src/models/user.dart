@@ -13,10 +13,34 @@ abstract class User with _$User {
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
+  static const minNameLength = 2;
+  static const maxNameLength = 30;
+
+  static String? Function(String?) nameValidator(String minLengthError) {
+    return (value) {
+      final trimmed = value?.trim() ?? '';
+      if (trimmed.length < minNameLength) {
+        return minLengthError;
+      }
+      return null;
+    };
+  }
+
   factory User.create({required String name}) {
     final trimmed = name.trim();
-    if (trimmed.isEmpty) {
-      throw ArgumentError.value(name, 'name', 'must not be empty');
+    if (trimmed.length < minNameLength) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'must be at least $minNameLength characters',
+      );
+    }
+    if (trimmed.length > maxNameLength) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'must be at most $maxNameLength characters',
+      );
     }
     return User(name: trimmed);
   }

@@ -13,7 +13,9 @@ class WelcomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nameController = useTextEditingController();
+    final formKey = useMemoized(GlobalKey<FormState>.new);
     final l10n = context.l10n;
+
     ref.listen(userViewModelProvider, (previous, next) {
       if (next.hasError && !next.isLoading) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -25,39 +27,51 @@ class WelcomeScreen extends HookConsumerWidget {
       }
     });
 
+    void submit() {
+      if (formKey.currentState?.validate() ?? false) {
+        ref.read(userViewModelProvider.notifier).saveUser(nameController.text);
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: AppSpacing.screenPadding,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GradientText(
-                l10n.welcomeTitle,
-                style: context.textTheme.headlineLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GradientText(
+                  l10n.welcomeTitle,
+                  style: context.textTheme.headlineLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  labelText: l10n.enterName,
-                  counterText: '',
+                const SizedBox(height: AppSpacing.md),
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: l10n.enterName,
+                    counterText: '',
+                  ),
+                  textCapitalization: TextCapitalization.words,
+                  textInputAction: TextInputAction.done,
+                  maxLength: User.maxNameLength,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: User.nameValidator(
+                    l10n.nameMinLengthError(User.minNameLength),
+                  ),
+                  onFieldSubmitted: (_) => submit(),
                 ),
-                textCapitalization: TextCapitalization.words,
-                textInputAction: TextInputAction.done,
-                maxLength: 30,
-              ),
-              const SizedBox(height: AppSpacing.md),
-              GradientButton(
-                onPressed: () => ref
-                    .read(userViewModelProvider.notifier)
-                    .saveUser(nameController.text),
-                icon: Icons.arrow_forward,
-                label: l10n.continueButton,
-              ),
-            ],
+                const SizedBox(height: AppSpacing.md),
+                GradientButton(
+                  onPressed: submit,
+                  icon: Icons.arrow_forward,
+                  label: l10n.continueButton,
+                ),
+              ],
+            ),
           ),
         ),
       ),

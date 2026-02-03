@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,8 +12,24 @@ import 'package:xoapp/src/presentation/viewmodels/theme_viewmodel.dart';
 import 'package:xoapp/src/routing/app_router.dart';
 import 'package:xoapp/theme/app_theme.dart';
 
+const _logger = DevLogger('XoApp');
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterError.onError = (details) {
+    _logger.error(
+      'Flutter error: ${details.exception}',
+      error: details.exception,
+      stackTrace: details.stack,
+    );
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    _logger.error('Platform error: $error', error: error, stackTrace: stack);
+    return true;
+  };
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -21,7 +38,7 @@ void main() async {
 
   runApp(
     ProviderScope(
-      observers: [AppProviderObserver(const DevLogger('XoApp'))],
+      observers: [AppProviderObserver(_logger)],
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
       ],

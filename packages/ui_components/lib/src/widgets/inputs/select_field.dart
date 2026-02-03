@@ -51,7 +51,11 @@ class SelectField<T> extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             ...values.map((value) {
-              return _buildOption(context, value, primaryColor);
+              return _buildOption(
+                context: context,
+                value: value,
+                activeColor: primaryColor,
+              );
             }),
             const SizedBox(height: AppSpacing.sm),
           ],
@@ -60,7 +64,11 @@ class SelectField<T> extends StatelessWidget {
     );
   }
 
-  Widget _buildOption(BuildContext context, T value, Color activeColor) {
+  Widget _buildOption({
+    required BuildContext context,
+    required T value,
+    required Color activeColor,
+  }) {
     final isSelected = value == selected;
     final color = isSelected ? activeColor : null;
 

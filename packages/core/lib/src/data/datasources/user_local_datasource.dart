@@ -25,7 +25,11 @@ class UserLocalDatasourceImpl implements UserLocalDatasource {
   Future<Map<String, dynamic>?> getUser() async {
     final raw = _prefs.getString(_key);
     if (raw == null) return null;
-    return jsonDecode(raw) as Map<String, dynamic>;
+    try {
+      return jsonDecode(raw) as Map<String, dynamic>;
+    } on FormatException {
+      return null; // Corrupted data, treat as no user
+    }
   }
 }
 

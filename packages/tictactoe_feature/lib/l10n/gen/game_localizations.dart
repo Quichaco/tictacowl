@@ -107,8 +107,8 @@ abstract class GameLocalizations {
   /// No description provided for @aiName.
   ///
   /// In en, this message translates to:
-  /// **'AI XO'**
-  String get aiName;
+  /// **'AI {difficulty}'**
+  String aiName(String difficulty);
 
   /// No description provided for @nextRoundButton.
   ///

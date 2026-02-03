@@ -1,7 +1,7 @@
 {
   "@@locale": "fr",
   "roundTitle": "Manche {current}",
-  "aiName": "IA XO",
+  "aiName": "IA {difficulty}",
   "nextRoundButton": "Manche suivante",
   "replayButton": "Rejouer",
   "difficultyEasy": "Facile",

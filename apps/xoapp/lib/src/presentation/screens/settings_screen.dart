@@ -24,8 +24,9 @@ class SettingsScreen extends HookConsumerWidget {
     final nameController = useTextEditingController(
       text: userAsync.value?.name ?? '',
     );
+    final nameFormKey = useMemoized(GlobalKey<FormState>.new);
 
-    void submitName() async {
+    Future<void> submitName() async {
       await ref
           .read(userViewModelProvider.notifier)
           .saveUser(nameController.text);
@@ -44,6 +45,11 @@ class SettingsScreen extends HookConsumerWidget {
             value: userAsync.value?.name ?? '',
             isEditing: isEditingName.value,
             controller: nameController,
+            formKey: nameFormKey,
+            validator: User.nameValidator(
+              l10n.nameMinLengthError(User.minNameLength),
+            ),
+            maxLength: User.maxNameLength,
             onSubmitted: submitName,
             onEditPressed: () {
               nameController.text = userAsync.value?.name ?? '';

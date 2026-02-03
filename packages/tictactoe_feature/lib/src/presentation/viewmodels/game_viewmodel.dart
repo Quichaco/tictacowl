@@ -3,15 +3,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/providers/use_case_providers.dart';
+import 'package:ui_components/ui_components.dart';
 
 part 'game_viewmodel.g.dart';
 
 @riverpod
 class GameViewModel extends _$GameViewModel {
-  late final PlayMoveUseCase _playMoveUseCase;
-  late final NextRoundUseCase _nextRoundUseCase;
-  late final RestartGameUseCase _restartGameUseCase;
-
   @override
   GameState build() {
     final config = ref.watch(gameConfigViewModelProvider);
@@ -21,19 +18,38 @@ class GameViewModel extends _$GameViewModel {
       orElse: () => null,
     );
 
-    _playMoveUseCase = ref.read(playMoveUseCaseProvider);
-    _nextRoundUseCase = ref.read(nextRoundUseCaseProvider);
-    _restartGameUseCase = ref.read(restartGameUseCaseProvider);
-
     return GameState.create(
       totalRounds: config.rounds,
       playerName: playerName ?? '',
     );
   }
 
-  void play(int index) => state = _playMoveUseCase(state, index);
+  Difficulty get _difficulty =>
+      ref.read(gameConfigViewModelProvider).difficulty;
 
-  void next() => state = _nextRoundUseCase(state);
+  void play(int index) {
+    state = ref.read(playMoveUseCaseProvider)(state: state, index: index);
+    _playAiIfNeeded();
+  }
 
-  void restart() => state = _restartGameUseCase(state);
+  void next() {
+    state = ref.read(nextRoundUseCaseProvider)(state);
+    _playAiIfNeeded();
+  }
+
+  void restart() {
+    state = ref.read(restartGameUseCaseProvider)(state);
+  }
+
+  Future<void> _playAiIfNeeded() async {
+    const aiPlayer = Player.o;
+    if (state.isGameOver || state.currentPlayer != aiPlayer) return;
+
+    await Future.delayed(AppDurations.medium);
+    state = ref.read(aiMoveUseCaseProvider)(
+      state: state,
+      difficulty: _difficulty,
+      aiPlayer: aiPlayer,
+    );
+  }
 }

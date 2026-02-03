@@ -18,5 +18,6 @@
   "themeSystem": "Système",
   "languageLabel": "Langue",
   "languageName": "Français",
-  "roundsLabel": "{count, plural, =1{Manche} other{Manches}}"
+  "roundsLabel": "{count, plural, =1{Manche} other{Manches}}",
+  "nameMinLengthError": "Au moins {min} caractères"
 }

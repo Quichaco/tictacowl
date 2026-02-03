@@ -8,7 +8,14 @@
       }
     }
   },
-  "aiName": "AI XO",
+  "aiName": "AI {difficulty}",
+  "@aiName": {
+    "placeholders": {
+      "difficulty": {
+        "type": "String"
+      }
+    }
+  },
   "nextRoundButton": "Next round",
   "replayButton": "Replay",
   "difficultyEasy": "Easy",

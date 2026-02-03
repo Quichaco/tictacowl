@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
-import 'package:tictactoe_feature/src/providers/game_preferences_repository_provider.dart';
+import 'package:tictactoe_feature/src/data/repositories/game_preferences_repository_impl.dart';
 
 part 'game_config_viewmodel.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tictactoe_feature/l10n/gen/game_localizations.dart';
+import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
 import 'package:ui_components/ui_components.dart';
 
@@ -18,7 +18,7 @@ class GameActionButton extends ConsumerWidget {
 
     if (!isGameOver) return const SizedBox.shrink();
 
-    final l10n = GameLocalizations.of(context)!;
+    final l10n = context.l10n;
     final notifier = ref.read(gameViewModelProvider.notifier);
 
     return Padding(

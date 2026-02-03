@@ -14,7 +14,9 @@ class GameLocalizationsFr extends GameLocalizations {
   }
 
   @override
-  String get aiName => 'IA XO';
+  String aiName(String difficulty) {
+    return 'IA $difficulty';
+  }
 
   @override
   String get nextRoundButton => 'Manche suivante';

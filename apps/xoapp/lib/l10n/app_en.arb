@@ -32,5 +32,13 @@
         "type": "int"
       }
     }
+  },
+  "nameMinLengthError": "At least {min} characters",
+  "@nameMinLengthError": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
   }
 }

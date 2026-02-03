@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
-import 'package:tictactoe_feature/l10n/gen/game_localizations.dart';
+import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/widgets/board/game_grid.dart';
 import 'package:tictactoe_feature/src/presentation/widgets/game_action_button.dart';
@@ -16,12 +16,10 @@ class GameScreen extends ConsumerWidget {
     final currentRound = ref.watch(
       gameViewModelProvider.select((s) => s.currentRound),
     );
-    final l10n = GameLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
-        title: Text(l10n.roundTitle(currentRound)),
+        title: Text(context.l10n.roundTitle(currentRound)),
         centerTitle: true,
       ),
       body: SafeArea(

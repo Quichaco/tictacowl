@@ -72,7 +72,7 @@ class _DifficultyPicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = GameLocalizations.of(context)!;
+    final l10n = context.gameL10n;
     final difficulty = ref.watch(
       gameConfigViewModelProvider.select((c) => c.difficulty),
     );

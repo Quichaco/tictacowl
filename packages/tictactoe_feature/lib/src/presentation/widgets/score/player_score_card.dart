@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
-import 'package:tictactoe_feature/l10n/gen/game_localizations.dart';
+import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
+import 'package:tictactoe_feature/src/common/extensions/difficulty_extensions.dart';
+import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/widgets/score/score_card.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
 import 'package:ui_components/ui_components.dart';
@@ -30,7 +32,12 @@ class PlayerScoreCard extends ConsumerWidget {
         ? context.brand.actionGradient
         : context.brand.secondaryGradient;
 
-    final name = isPlayerX ? playerName : GameLocalizations.of(context)!.aiName;
+    final l10n = context.l10n;
+    final name = isPlayerX
+        ? playerName
+        : l10n.aiName(ref.watch(
+            gameConfigViewModelProvider.select((c) => c.difficulty.label(l10n)),
+          ));
 
     return ScoreCard(
       symbol: isPlayerX ? 'X' : 'O',

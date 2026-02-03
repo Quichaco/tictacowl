@@ -5,7 +5,7 @@ class PlayMoveUseCase {
   const PlayMoveUseCase();
 
   /// Places a move at [index]. Returns unchanged state if cell occupied or game over.
-  GameState call(GameState state, int index) {
+  GameState call({required GameState state, required int index}) {
     if (state.board[index] != null || state.isGameOver) return state;
 
     final newBoard = List<Player?>.from(state.board);
@@ -15,7 +15,7 @@ class PlayMoveUseCase {
     final newState = GameState.create(
       board: newBoard,
       gridSize: state.gridSize,
-      currentPlayer: state.currentPlayer == Player.x ? Player.o : Player.x,
+      currentPlayer: state.currentPlayer.opponent,
       scoreX: state.scoreX,
       scoreO: state.scoreO,
       currentRound: state.currentRound,

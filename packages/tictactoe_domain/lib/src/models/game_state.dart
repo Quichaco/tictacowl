@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tictactoe_domain/src/models/player.dart';
+import 'package:tictactoe_domain/src/utils/board_utils.dart';
 
 part 'game_state.freezed.dart';
 
@@ -32,7 +33,10 @@ abstract class GameState with _$GameState {
     required String playerName,
   }) {
     final effectiveBoard = board ?? List.filled(gridSize * gridSize, null);
-    final winPattern = _findWinPattern(effectiveBoard, gridSize);
+    final winPattern = BoardUtils.findWinPattern(
+      board: effectiveBoard,
+      gridSize: gridSize,
+    );
     return GameState(
       board: effectiveBoard,
       gridSize: gridSize,
@@ -52,33 +56,4 @@ abstract class GameState with _$GameState {
   bool get isGameOver => winner != null || isDraw;
 
   bool get isMatchOver => isGameOver && currentRound >= totalRounds;
-
-  static final _patternsCache = <int, List<List<int>>>{};
-
-  static List<List<int>> _getWinPatterns(int size) {
-    return _patternsCache.putIfAbsent(
-      size,
-      () => [
-        // Row
-        for (var row = 0; row < size; row++)
-          [for (var col = 0; col < size; col++) row * size + col],
-        // Column
-        for (var col = 0; col < size; col++)
-          [for (var row = 0; row < size; row++) row * size + col],
-        // Diagonals
-        [for (var i = 0; i < size; i++) i * (size + 1)],
-        [for (var i = 0; i < size; i++) (i + 1) * (size - 1)],
-      ],
-    );
-  }
-
-  static List<int>? _findWinPattern(List<Player?> board, int gridSize) {
-    for (final pattern in _getWinPatterns(gridSize)) {
-      final first = board[pattern[0]];
-      if (first != null && pattern.every((i) => board[i] == first)) {
-        return pattern;
-      }
-    }
-    return null;
-  }
 }
