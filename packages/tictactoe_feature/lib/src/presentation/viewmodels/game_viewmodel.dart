@@ -43,9 +43,9 @@ class GameViewModel extends _$GameViewModel {
 
   Future<void> _playAiIfNeeded() async {
     const aiPlayer = Player.o;
-    if (state.isGameOver || state.currentPlayer != aiPlayer) return;
+    if (state.isRoundOver || state.currentPlayer != aiPlayer) return;
 
-    await Future.delayed(AppDurations.medium);
+    await Future.delayed(AppDurations.extraSlow);
     state = ref.read(aiMoveUseCaseProvider)(
       state: state,
       difficulty: _difficulty,

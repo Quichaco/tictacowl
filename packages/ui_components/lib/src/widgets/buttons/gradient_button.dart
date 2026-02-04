@@ -54,7 +54,7 @@ class GradientButton extends HookWidget {
         gradient: isDisabled
             ? null
             : _secondary
-                ? context.brand.secondaryGradient
+                ? context.brand.tertiaryGradient
                 : context.brand.actionGradient,
         color: isDisabled ? context.theme.disabledColor : null,
         borderRadius: AppRadius.button,

@@ -4,7 +4,7 @@
   "welcomeTitle": "XO Game",
   "enterName": "Enter your name",
   "continueButton": "Continue",
-  "homeGreeting": "Welcome, {name}!",
+  "homeGreeting": "{name}, become the legend of the perch!",
   "@homeGreeting": {
     "placeholders": {
       "name": {
@@ -12,8 +12,9 @@
       }
     }
   },
+  "homeGreetingSuffix": ", become the legend of the perch!",
   "playButton": "Play",
-  "homeGreetingFallback": "Welcome!",
+  "homeGreetingFallback": "Become the legend of the perch!",
   "saveUserError": "Failed to save user. Please try again.",
   "genericError": "An error occurred. Please try again.",
   "settingsButton": "Settings",
@@ -40,5 +41,14 @@
         "type": "int"
       }
     }
-  }
+  },
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "gameModeLabel": "Game Mode"
 }

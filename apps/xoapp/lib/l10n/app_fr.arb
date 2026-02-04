@@ -4,9 +4,10 @@
   "welcomeTitle": "XO Game",
   "enterName": "Entrez votre nom",
   "continueButton": "Continuer",
-  "homeGreeting": "Bienvenue, {name} !",
+  "homeGreeting": "{name}, deviens la légende du perchoir !",
+  "homeGreetingSuffix": ", deviens la légende du perchoir !",
   "playButton": "Jouer",
-  "homeGreetingFallback": "Bienvenue !",
+  "homeGreetingFallback": "Deviens la légende du perchoir !",
   "saveUserError": "Impossible de sauvegarder. Veuillez réessayer.",
   "genericError": "Une erreur est survenue. Veuillez réessayer.",
   "settingsButton": "Paramètres",
@@ -19,5 +20,14 @@
   "languageLabel": "Langue",
   "languageName": "Français",
   "roundsLabel": "{count, plural, =1{Manche} other{Manches}}",
-  "nameMinLengthError": "Au moins {min} caractères"
+  "nameMinLengthError": "Au moins {min} caractères",
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "gameModeLabel": "Mode de jeu"
 }

@@ -6,12 +6,12 @@ class PlayMoveUseCase {
 
   /// Places a move at [index]. Returns unchanged state if cell occupied or game over.
   GameState call({required GameState state, required int index}) {
-    if (state.board[index] != null || state.isGameOver) return state;
+    if (state.board[index] != null || state.isRoundOver) return state;
 
     final newBoard = List<Player?>.from(state.board);
     newBoard[index] = state.currentPlayer;
 
-    // Creates state and computes derived fields (winner, winPattern, isGameOver)
+    // Creates state and computes derived fields (winner, winPattern, isRoundOver)
     final newState = GameState.create(
       board: newBoard,
       gridSize: state.gridSize,

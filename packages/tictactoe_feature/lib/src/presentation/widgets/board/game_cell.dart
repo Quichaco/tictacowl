@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ui_components/ui_components.dart';
 
 class GameCell extends StatelessWidget {
   const GameCell({
-    required this.symbol,
+    required this.symbolType,
     required this.isEmpty,
     required this.gradient,
     required this.onTap,
+    this.isWinning = false,
     super.key,
   });
 
-  final String symbol;
+  final XoSymbolType symbolType;
   final bool isEmpty;
   final LinearGradient gradient;
   final VoidCallback onTap;
+  final bool isWinning;
 
   @override
   Widget build(BuildContext context) {
@@ -24,61 +27,97 @@ class GameCell extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final cellSize = constraints.maxWidth;
-          final borderWidth = cellSize * AppBorder.cellFraction;
 
-          return Container(
+          const borderWidth = 3.0;
+          final innerRadius = BorderRadius.circular(AppRadius.md - borderWidth);
+
+          return AnimatedContainer(
+            duration: AppDurations.medium,
             decoration: BoxDecoration(
-              color: colors.surfaceContainerLow,
+              color: colors.surfaceContainer,
               borderRadius: AppRadius.card,
+              border: isWinning
+                  ? Border.all(
+                      color: context.brand.gold,
+                      width: borderWidth,
+                    )
+                  : null,
             ),
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: AnimatedOpacity(
-                    duration: AppDurations.medium,
-                    curve: Curves.easeOut,
-                    opacity: isEmpty ? 0 : 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: gradient,
-                        borderRadius: AppRadius.card,
-                      ),
-                      padding: EdgeInsets.all(borderWidth),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors.surfaceContainerLow,
-                          borderRadius: BorderRadius.circular(
-                            AppRadius.md - borderWidth,
-                          ),
-                        ),
-                      ),
+            child: ClipRRect(
+              borderRadius: isWinning ? innerRadius : AppRadius.card,
+              child: Stack(
+                children: [
+                  if (isWinning)
+                    Positioned.fill(
+                      child: _GoldShimmer(),
                     ),
-                  ),
-                ),
                 Center(
                   child: AnimatedSwitcher(
-                    duration: AppDurations.medium,
-                    switchInCurve: Curves.easeOut,
+                    duration: AppDurations.extraSlow,
                     transitionBuilder: (child, animation) {
-                      return ScaleTransition(scale: animation, child: child);
+                      final curvedAnimation = CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeOutBack,
+                      );
+                      return ScaleTransition(
+                        scale: curvedAnimation,
+                        child: RotationTransition(
+                          turns: Tween<double>(begin: -0.25, end: 0.0)
+                              .animate(curvedAnimation),
+                          child: child,
+                        ),
+                      );
                     },
                     child: isEmpty
                         ? const SizedBox.shrink(key: ValueKey('empty'))
-                        : GradientText(
-                            symbol,
-                            key: ValueKey(symbol),
-                            style: context.textTheme.displayMedium!.copyWith(
-                              fontWeight: FontWeight.bold,
+                        : Padding(
+                            key: ValueKey(symbolType),
+                            padding: EdgeInsets.all(cellSize * 0.2),
+                            child: XoSymbol(
+                              type: symbolType,
+                              gradient: gradient,
                             ),
-                            gradient: gradient,
                           ),
                   ),
                 ),
-              ],
+                ],
+              ),
             ),
           );
         },
       ),
+    );
+  }
+}
+
+class _GoldShimmer extends HookWidget {
+  const _GoldShimmer();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useAnimationController(
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    final animation = useMemoized(
+      () => Tween<double>(begin: 0.1, end: 0.4).animate(
+        CurvedAnimation(parent: controller, curve: Curves.easeInOut),
+      ),
+      [controller],
+    );
+
+    useEffect(() {
+      controller.repeat(reverse: true);
+      return null;
+    }, []);
+
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return ColoredBox(
+          color: context.brand.gold.withValues(alpha: animation.value),
+        );
+      },
     );
   }
 }

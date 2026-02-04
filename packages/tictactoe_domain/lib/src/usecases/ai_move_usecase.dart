@@ -20,7 +20,7 @@ class AiMoveUseCase {
     required Difficulty difficulty,
     required Player aiPlayer,
   }) {
-    if (state.currentPlayer != aiPlayer || state.isGameOver) return state;
+    if (state.currentPlayer != aiPlayer || state.isRoundOver) return state;
 
     final strategy = _strategyFactory.create(difficulty);
     final move = strategy.selectMove(

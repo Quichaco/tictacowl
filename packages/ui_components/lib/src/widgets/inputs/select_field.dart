@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ui_components/src/extensions/build_context_extensions.dart';
-import 'package:ui_components/src/theme/app_radius.dart';
 import 'package:ui_components/src/theme/app_spacing.dart';
 
 class SelectField<T> extends StatelessWidget {
@@ -24,8 +23,6 @@ class SelectField<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.card),
-      tileColor: context.colorScheme.surfaceContainerLow,
       leading: iconOf != null ? Icon(iconOf!(selected)) : null,
       title: Text(labelOf(selected)),
       trailing: const Icon(Icons.chevron_right),
@@ -40,25 +37,30 @@ class SelectField<T> extends StatelessWidget {
       context: context,
       showDragHandle: true,
       builder: (context) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              title,
-              style: context.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal:  AppSpacing.xs,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            ...values.map((value) {
-              return _buildOption(
-                context: context,
-                value: value,
-                activeColor: primaryColor,
-              );
-            }),
-            const SizedBox(height: AppSpacing.sm),
-          ],
+              const SizedBox(height: AppSpacing.sm),
+              ...values.map((value) {
+                return _buildOption(
+                  context: context,
+                  value: value,
+                  activeColor: primaryColor,
+                );
+              }),
+              const SizedBox(height: AppSpacing.sm),
+            ],
+          ),
         ),
       ),
     );
@@ -74,6 +76,7 @@ class SelectField<T> extends StatelessWidget {
 
     return ListTile(
       leading: iconOf != null ? Icon(iconOf!(value), color: color) : null,
+      tileColor: Colors.transparent,
       title: Text(
         labelOf(value),
         style: isSelected

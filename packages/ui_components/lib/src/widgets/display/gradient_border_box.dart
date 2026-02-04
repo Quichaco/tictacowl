@@ -34,7 +34,7 @@ class GradientBorderBox extends StatelessWidget {
           padding: EdgeInsets.all(borderWidth),
           child: Container(
             decoration: BoxDecoration(
-              color: context.colorScheme.surfaceContainerLow,
+              color: context.colorScheme.surfaceContainer,
               borderRadius:
                   BorderRadius.circular(borderRadius - borderWidth),
             ),

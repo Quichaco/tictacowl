@@ -6,7 +6,7 @@ class NextRoundUseCase {
 
   /// Advances to next round. Loser starts, X starts on draw.
   GameState call(GameState state) {
-    if (!state.isGameOver || state.isMatchOver) return state;
+    if (!state.isRoundOver || state.isMatchOver) return state;
 
     return GameState.create(
       gridSize: state.gridSize,

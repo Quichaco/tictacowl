@@ -19,6 +19,28 @@ class GameLocalizationsEn extends GameLocalizations {
   }
 
   @override
+  String playerWinsRound(String name) {
+    return '$name wins the round!';
+  }
+
+  @override
+  String playerWinsMatch(String name) {
+    return '$name wins the game!';
+  }
+
+  @override
+  String get drawRoundResult => 'Round draw!';
+
+  @override
+  String get drawMatchResult => 'Match draw!';
+
+  @override
+  String get tapToContinue => 'Tap to continue';
+
+  @override
+  String get tapToReplay => 'Tap to replay';
+
+  @override
   String get nextRoundButton => 'Next round';
 
   @override
@@ -32,4 +54,46 @@ class GameLocalizationsEn extends GameLocalizations {
 
   @override
   String get difficultyHard => 'Hard';
+
+  @override
+  String get owlEasyTitle => 'Wise Owl';
+
+  @override
+  String get owlMediumTitle => 'Cunning Owl';
+
+  @override
+  String get owlHardTitle => 'Master Owl';
+
+  @override
+  String get owlEasySubtitle => 'Perfect for beginners';
+
+  @override
+  String get owlMediumSubtitle => 'A balanced challenge';
+
+  @override
+  String get owlHardSubtitle => 'Only for the brave';
+
+  @override
+  String get restartButton => 'Restart';
+
+  @override
+  String get restartTitle => 'Restart game?';
+
+  @override
+  String get restartMessage => 'The scores will be reset to zero.';
+
+  @override
+  String get quitTitle => 'Quit game?';
+
+  @override
+  String get quitMessage => 'The current game will be lost.';
+
+  @override
+  String get confirmButton => 'Confirm';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get quitButton => 'Quit';
 }

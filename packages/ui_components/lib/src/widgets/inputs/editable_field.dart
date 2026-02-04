@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ui_components/src/extensions/build_context_extensions.dart';
-import 'package:ui_components/src/theme/app_radius.dart';
 
 class EditableField extends StatelessWidget {
   const EditableField({
@@ -35,8 +34,6 @@ class EditableField extends StatelessWidget {
     final colors = context.colorScheme;
 
     return ListTile(
-      shape: const RoundedRectangleBorder(borderRadius: AppRadius.card),
-      tileColor: colors.surfaceContainerLow,
       title: isEditing
           ? Form(
               key: formKey,

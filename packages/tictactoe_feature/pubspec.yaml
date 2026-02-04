@@ -23,6 +23,8 @@ dependencies:
     path: ../tictactoe_domain
   ui_components:
     path: ../ui_components
+  confetti: ^0.8.0
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +36,5 @@ dev_dependencies:
 
 flutter:
   generate: true
+  assets:
+    - assets/img/

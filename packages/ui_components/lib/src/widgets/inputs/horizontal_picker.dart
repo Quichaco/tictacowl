@@ -54,7 +54,7 @@ class HorizontalPicker<T> extends HookWidget {
           vertical: AppSpacing.xs,
         ),
         decoration: BoxDecoration(
-          color: context.colorScheme.surfaceContainerLow,
+          color: context.colorScheme.surfaceContainer,
           borderRadius: AppRadius.button,
         ),
         child: Row(
@@ -80,29 +80,19 @@ class HorizontalPicker<T> extends HookWidget {
                       child: FadeTransition(opacity: animation, child: child),
                     );
                   },
-                  layoutBuilder: (currentChild, previousChildren) {
-                    return Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ...previousChildren,
-                        ?currentChild,
-                      ],
-                    );
-                  },
-                  child: Row(
+                  child: Column(
                     key: ValueKey(selected),
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       if (emojiOf != null) ...[
                         Text(
                           emojiOf!(selected),
-                          style: const TextStyle(fontSize: 22),
+                          style: context.textTheme.headlineSmall,
                         ),
-                        const SizedBox(width: AppSpacing.xs),
                       ],
                       Text(
                         labelOf(selected),
-                        style: context.textTheme.titleMedium?.copyWith(
+                        style: context.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),

@@ -51,9 +51,32 @@ abstract class GameState with _$GameState {
     );
   }
 
-  bool get isDraw => winner == null && board.every((c) => c != null);
+  /// Draw for current round (no winner and board full)
+  bool get isRoundDraw => winner == null && board.every((c) => c != null);
 
-  bool get isGameOver => winner != null || isDraw;
+  /// Current round is over
+  bool get isRoundOver => winner != null || isRoundDraw;
 
-  bool get isMatchOver => isGameOver && currentRound >= totalRounds;
+  /// Rounds remaining after current one
+  int get _remainingRounds => totalRounds - currentRound;
+
+  /// Check if a player has mathematically won the match
+  /// (opponent can't even tie by winning all remaining rounds)
+  bool get _hasMatchWinner =>
+      scoreX > scoreO + _remainingRounds || scoreO > scoreX + _remainingRounds;
+
+  /// Match is over (last round finished OR someone mathematically won)
+  bool get isMatchOver =>
+      (isRoundOver && currentRound >= totalRounds) || _hasMatchWinner;
+
+  /// Winner of the match based on total score (null if tied or not over)
+  Player? get matchWinner {
+    if (!isMatchOver) return null;
+    if (scoreX > scoreO) return Player.x;
+    if (scoreO > scoreX) return Player.o;
+    return null; // Tie
+  }
+
+  /// Match ended in a tie (scores are equal)
+  bool get isMatchDraw => isMatchOver && scoreX == scoreO;
 }

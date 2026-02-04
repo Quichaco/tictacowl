@@ -16,9 +16,43 @@
       }
     }
   },
+  "playerWinsRound": "{name} wins the round!",
+  "@playerWinsRound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playerWinsMatch": "{name} wins the game!",
+  "@playerWinsMatch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "drawRoundResult": "Round draw!",
+  "drawMatchResult": "Match draw!",
+  "tapToContinue": "Tap to continue",
+  "tapToReplay": "Tap to replay",
   "nextRoundButton": "Next round",
   "replayButton": "Replay",
   "difficultyEasy": "Easy",
   "difficultyMedium": "Medium",
-  "difficultyHard": "Hard"
+  "difficultyHard": "Hard",
+  "owlEasyTitle": "Wise Owl",
+  "owlMediumTitle": "Cunning Owl",
+  "owlHardTitle": "Master Owl",
+  "owlEasySubtitle": "Perfect for beginners",
+  "owlMediumSubtitle": "A balanced challenge",
+  "owlHardSubtitle": "Only for the brave",
+  "restartButton": "Restart",
+  "restartTitle": "Restart game?",
+  "restartMessage": "The scores will be reset to zero.",
+  "quitTitle": "Quit game?",
+  "quitMessage": "The current game will be lost.",
+  "confirmButton": "Confirm",
+  "cancelButton": "Cancel",
+  "quitButton": "Quit"
 }

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ui_components/ui_components.dart';
 import 'package:xoapp/src/common/extensions/build_context_extensions.dart';
+import 'package:xoapp/src/presentation/widgets/animated_xo_logo.dart';
 import 'package:xoapp/src/routing/app_routes.dart';
 
 class WelcomeScreen extends HookConsumerWidget {
@@ -40,29 +41,35 @@ class WelcomeScreen extends HookConsumerWidget {
           child: Form(
             key: formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GradientText(
-                  l10n.welcomeTitle,
-                  style: context.textTheme.headlineLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: FractionallySizedBox(
+                          widthFactor: 0.7,
+                          child: const AnimatedXoLogo(),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.md),
+                      TextFormField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: l10n.enterName,
+                          counterText: '',
+                        ),
+                        textCapitalization: TextCapitalization.words,
+                        textInputAction: TextInputAction.done,
+                        maxLength: User.maxNameLength,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: User.nameValidator(
+                          l10n.nameMinLengthError(User.minNameLength),
+                        ),
+                        onFieldSubmitted: (_) => submit(),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    labelText: l10n.enterName,
-                    counterText: '',
-                  ),
-                  textCapitalization: TextCapitalization.words,
-                  textInputAction: TextInputAction.done,
-                  maxLength: User.maxNameLength,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: User.nameValidator(
-                    l10n.nameMinLengthError(User.minNameLength),
-                  ),
-                  onFieldSubmitted: (_) => submit(),
                 ),
                 const SizedBox(height: AppSpacing.md),
                 GradientButton(

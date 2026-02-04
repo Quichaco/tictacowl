@@ -46,7 +46,7 @@ class RoundCounter extends HookWidget {
         vertical: AppSpacing.xs,
       ),
       decoration: BoxDecoration(
-        color: colors.surfaceContainerLow,
+        color: colors.surfaceContainer,
         borderRadius: AppRadius.button,
       ),
       child: Row(
@@ -56,8 +56,8 @@ class RoundCounter extends HookWidget {
             onTap: value > min ? decrement : null,
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 ClipRect(
                   child: AnimatedSwitcher(
@@ -75,31 +75,21 @@ class RoundCounter extends HookWidget {
                         child: FadeTransition(opacity: animation, child: child),
                       );
                     },
-                    layoutBuilder: (currentChild, previousChildren) {
-                      return Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          ...previousChildren,
-                          ?currentChild,
-                        ],
-                      );
-                    },
                     child: Text(
                       '$value',
                       key: ValueKey(value),
                       textAlign: TextAlign.center,
-                      style: context.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
+                      style: context.textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
                 if (labelOf != null) ...[
-                  const SizedBox(width: 4),
                   Text(
                     labelOf!(value),
-                    style: context.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
+                    style: context.textTheme.bodyMedium?.copyWith(
+                      color: context.brand.textSecondary,
                     ),
                   ),
                 ],

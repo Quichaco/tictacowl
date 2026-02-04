@@ -110,6 +110,42 @@ abstract class GameLocalizations {
   /// **'AI {difficulty}'**
   String aiName(String difficulty);
 
+  /// No description provided for @playerWinsRound.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wins the round!'**
+  String playerWinsRound(String name);
+
+  /// No description provided for @playerWinsMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wins the game!'**
+  String playerWinsMatch(String name);
+
+  /// No description provided for @drawRoundResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Round draw!'**
+  String get drawRoundResult;
+
+  /// No description provided for @drawMatchResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Match draw!'**
+  String get drawMatchResult;
+
+  /// No description provided for @tapToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to continue'**
+  String get tapToContinue;
+
+  /// No description provided for @tapToReplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to replay'**
+  String get tapToReplay;
+
   /// No description provided for @nextRoundButton.
   ///
   /// In en, this message translates to:
@@ -139,6 +175,90 @@ abstract class GameLocalizations {
   /// In en, this message translates to:
   /// **'Hard'**
   String get difficultyHard;
+
+  /// No description provided for @owlEasyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wise Owl'**
+  String get owlEasyTitle;
+
+  /// No description provided for @owlMediumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cunning Owl'**
+  String get owlMediumTitle;
+
+  /// No description provided for @owlHardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Owl'**
+  String get owlHardTitle;
+
+  /// No description provided for @owlEasySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect for beginners'**
+  String get owlEasySubtitle;
+
+  /// No description provided for @owlMediumSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A balanced challenge'**
+  String get owlMediumSubtitle;
+
+  /// No description provided for @owlHardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only for the brave'**
+  String get owlHardSubtitle;
+
+  /// No description provided for @restartButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get restartButton;
+
+  /// No description provided for @restartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart game?'**
+  String get restartTitle;
+
+  /// No description provided for @restartMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The scores will be reset to zero.'**
+  String get restartMessage;
+
+  /// No description provided for @quitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit game?'**
+  String get quitTitle;
+
+  /// No description provided for @quitMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The current game will be lost.'**
+  String get quitMessage;
+
+  /// No description provided for @confirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirmButton;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @quitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit'**
+  String get quitButton;
 }
 
 class _GameLocalizationsDelegate
