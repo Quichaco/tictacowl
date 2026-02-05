@@ -1,10 +1,13 @@
 import 'package:core/core.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_feature/tictactoe_feature.dart';
+import 'package:xoapp/firebase_options.dart';
 import 'package:xoapp/l10n/gen/app_localizations.dart';
 import 'package:xoapp/src/common/observers/app_provider_observer.dart';
 import 'package:xoapp/src/presentation/viewmodels/locale_viewmodel.dart';
@@ -16,6 +19,10 @@ const _logger = DevLogger('XoApp');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   FlutterError.onError = (details) {
     _logger.error(

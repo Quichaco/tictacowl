@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "996512682328",
+    "project_id": "tictacowl",
+    "storage_bucket": "tictacowl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996512682328:android:c0ffd01b5349f9f981d52d",
+        "android_client_info": {
+          "package_name": "com.bulkdev.tictacowl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAXkD0SAef43c6ixWtFmquk1Q6SXpcWaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
