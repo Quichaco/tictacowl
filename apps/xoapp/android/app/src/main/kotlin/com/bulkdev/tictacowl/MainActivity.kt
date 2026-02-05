@@ -1,4 +1,4 @@
-package com.example.xoapp
+package com.bulkdev.tictacowl
 
 import io.flutter.embedding.android.FlutterActivity
 
