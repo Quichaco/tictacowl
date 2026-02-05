@@ -95,7 +95,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const _DifficultyPicker(),
+                  const _GameModePicker(),
                   const SizedBox(height: AppSpacing.sm),
                   Padding(
                     padding: AppSpacing.screenPadding.copyWith(top: 0, bottom: 0),
@@ -123,20 +123,20 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _DifficultyPicker extends ConsumerWidget {
-  const _DifficultyPicker();
+class _GameModePicker extends ConsumerWidget {
+  const _GameModePicker();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final difficulty = ref.watch(
-      gameConfigViewModelProvider.select((c) => c.difficulty),
+    final mode = ref.watch(
+      gameConfigViewModelProvider.select((c) => c.mode),
     );
 
-    return DifficultyCarousel(
-      selected: difficulty,
-      assetPath: (d) => d.theme.owlImage,
-      onChanged: (d) =>
-          ref.read(gameConfigViewModelProvider.notifier).setDifficulty(d),
+    return GameModeCarousel(
+      selected: mode,
+      assetPath: (m) => m.theme.owlImage,
+      onChanged: (m) =>
+          ref.read(gameConfigViewModelProvider.notifier).setMode(m),
     );
   }
 }

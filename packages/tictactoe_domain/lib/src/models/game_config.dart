@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tictactoe_domain/src/models/difficulty.dart';
+import 'package:tictactoe_domain/src/models/game_mode.dart';
 
 part 'game_config.freezed.dart';
 
@@ -8,7 +8,7 @@ abstract class GameConfig with _$GameConfig {
   const GameConfig._();
 
   const factory GameConfig({
-    @Default(Difficulty.easy) Difficulty difficulty,
+    @Default(GameMode.multiplayer) GameMode mode,
     @Default(3) int rounds,
   }) = _GameConfig;
 

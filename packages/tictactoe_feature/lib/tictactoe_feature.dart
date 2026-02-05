@@ -7,7 +7,7 @@ export 'l10n/gen/game_localizations.dart';
 export 'src/common/constants/tictactoe_assets.dart';
 
 // Theme
-export 'src/common/models/difficulty_theme.dart';
+export 'src/common/models/game_mode_theme.dart';
 
 // ViewModels
 export 'src/presentation/viewmodels/game_config_viewmodel.dart';
@@ -16,7 +16,7 @@ export 'src/presentation/viewmodels/game_config_viewmodel.dart';
 export 'src/presentation/screens/game_screen.dart';
 
 // Widgets
-export 'src/presentation/widgets/pickers/difficulty_carousel.dart';
+export 'src/presentation/widgets/pickers/game_mode_carousel.dart';
 
 // Re-export domain for convenience
 export 'package:tictactoe_domain/tictactoe_domain.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
-import 'package:tictactoe_feature/src/common/models/difficulty_theme.dart';
+import 'package:tictactoe_feature/src/common/models/game_mode_theme.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/widgets/board/game_grid.dart';
@@ -76,11 +76,12 @@ class GameScreen extends ConsumerWidget {
 
   Future<void> _showVictoryDialog(BuildContext context, WidgetRef ref) async {
     final state = ref.read(gameViewModelProvider);
-    final difficulty = ref.read(gameConfigViewModelProvider).difficulty;
+    final mode = ref.read(gameConfigViewModelProvider).mode;
     final l10n = context.l10n;
 
     String getName(Player player) {
-      return player == Player.x ? state.playerName : difficulty.theme.title(l10n);
+      if (player == Player.x) return state.playerName;
+      return mode.theme.title(l10n);
     }
 
     String getWinnerDisplayText() {

@@ -4,14 +4,17 @@ import 'package:tictactoe_feature/l10n/gen/game_localizations.dart';
 import 'package:tictactoe_feature/src/common/constants/tictactoe_assets.dart';
 import 'package:ui_components/ui_components.dart';
 
-/// UI theme data for [Difficulty].
+/// UI theme data for [GameMode].
 /// All presentation data is co-located in [_registry].
 @immutable
-final class DifficultyTheme {
-  const DifficultyTheme._({
+final class GameModeTheme {
+  static const maxDifficultyLevel = 3;
+
+  const GameModeTheme._({
     required this.emoji,
     required this.owlImage,
     required this.owlImageTop,
+    required this.difficultyLevel,
     required String Function(GameLocalizations) label,
     required String Function(GameLocalizations) title,
     required String Function(GameLocalizations) subtitle,
@@ -22,47 +25,63 @@ final class DifficultyTheme {
         _gradient = gradient;
 
   static final _registry = {
-    Difficulty.easy: DifficultyTheme._(
+    GameMode.multiplayer: GameModeTheme._(
+      emoji: '👥',
+      owlImage: TictactoeAssets.owlMulti,
+      owlImageTop: TictactoeAssets.owlMultiTop,
+      difficultyLevel: null,
+      label: (l10n) => l10n.gameModeMultiplayer,
+      title: (l10n) => l10n.owlMultiTitle,
+      subtitle: (l10n) => l10n.owlMultiSubtitle,
+      gradient: (brand) => brand.multiplayerGradient,
+    ),
+    GameMode.easy: GameModeTheme._(
       emoji: '😊',
       owlImage: TictactoeAssets.owlEasy,
       owlImageTop: TictactoeAssets.owlEasyTop,
-      label: (l10n) => l10n.difficultyEasy,
+      difficultyLevel: 1,
+      label: (l10n) => l10n.gameModeEasy,
       title: (l10n) => l10n.owlEasyTitle,
       subtitle: (l10n) => l10n.owlEasySubtitle,
       gradient: (brand) => brand.easyGradient,
     ),
-    Difficulty.medium: DifficultyTheme._(
+    GameMode.medium: GameModeTheme._(
       emoji: '😐',
       owlImage: TictactoeAssets.owlMedium,
       owlImageTop: TictactoeAssets.owlMediumTop,
-      label: (l10n) => l10n.difficultyMedium,
+      difficultyLevel: 2,
+      label: (l10n) => l10n.gameModeMedium,
       title: (l10n) => l10n.owlMediumTitle,
       subtitle: (l10n) => l10n.owlMediumSubtitle,
       gradient: (brand) => brand.mediumGradient,
     ),
-    Difficulty.hard: DifficultyTheme._(
+    GameMode.hard: GameModeTheme._(
       emoji: '😱',
       owlImage: TictactoeAssets.owlHard,
       owlImageTop: TictactoeAssets.owlHardTop,
-      label: (l10n) => l10n.difficultyHard,
+      difficultyLevel: 3,
+      label: (l10n) => l10n.gameModeHard,
       title: (l10n) => l10n.owlHardTitle,
       subtitle: (l10n) => l10n.owlHardSubtitle,
       gradient: (brand) => brand.hardGradient,
     ),
   };
 
-  static DifficultyTheme of(Difficulty difficulty) {
+  static GameModeTheme of(GameMode mode) {
     assert(
-      _registry.length == Difficulty.values.length,
-      'DifficultyTheme._registry is incomplete! '
-      'Expected ${Difficulty.values.length}, got ${_registry.length}',
+      _registry.length == GameMode.values.length,
+      'GameModeTheme._registry is incomplete! '
+      'Expected ${GameMode.values.length}, got ${_registry.length}',
     );
-    return _registry[difficulty]!;
+    return _registry[mode]!;
   }
 
   final String emoji;
   final String owlImage;
   final String owlImageTop;
+
+  /// Difficulty level for AI modes (1-3), null for multiplayer.
+  final int? difficultyLevel;
 
   final String Function(GameLocalizations) _label;
   final String Function(GameLocalizations) _title;
@@ -75,6 +94,6 @@ final class DifficultyTheme {
   LinearGradient gradient(BrandTheme brand) => _gradient(brand);
 }
 
-extension DifficultyThemeExtension on Difficulty {
-  DifficultyTheme get theme => DifficultyTheme.of(this);
+extension GameModeThemeExtension on GameMode {
+  GameModeTheme get theme => GameModeTheme.of(this);
 }

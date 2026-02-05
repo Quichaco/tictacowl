@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
-import 'package:tictactoe_feature/src/common/models/difficulty_theme.dart';
+import 'package:tictactoe_feature/src/common/models/game_mode_theme.dart';
 import 'package:ui_components/ui_components.dart';
 
-class DifficultyCarousel extends HookWidget {
-  const DifficultyCarousel({
+class GameModeCarousel extends HookWidget {
+  const GameModeCarousel({
     required this.selected,
     required this.onChanged,
     required this.assetPath,
     super.key,
   });
 
-  final Difficulty selected;
-  final ValueChanged<Difficulty> onChanged;
-  final String Function(Difficulty) assetPath;
+  final GameMode selected;
+  final ValueChanged<GameMode> onChanged;
+  final String Function(GameMode) assetPath;
 
   @override
   Widget build(BuildContext context) {
     final pageController = usePageController(
-      initialPage: Difficulty.values.indexOf(selected),
+      initialPage: GameMode.values.indexOf(selected),
     );
 
     useEffect(() {
-      final targetPage = Difficulty.values.indexOf(selected);
+      final targetPage = GameMode.values.indexOf(selected);
       if (pageController.hasClients &&
           pageController.page?.round() != targetPage) {
         pageController.animateToPage(
@@ -39,19 +39,19 @@ class DifficultyCarousel extends HookWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 120,
+        AspectRatio(
+          aspectRatio: 3,
           child: PageView.builder(
             controller: pageController,
-            itemCount: Difficulty.values.length,
-            onPageChanged: (index) => onChanged(Difficulty.values[index]),
+            itemCount: GameMode.values.length,
+            onPageChanged: (index) => onChanged(GameMode.values[index]),
             itemBuilder: (context, index) {
-              final difficulty = Difficulty.values[index];
+              final mode = GameMode.values[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                child: _DifficultyPage(
-                  difficulty: difficulty,
-                  assetPath: assetPath(difficulty),
+                child: _GameModePage(
+                  mode: mode,
+                  assetPath: assetPath(mode),
                 ),
               );
             },
@@ -59,26 +59,26 @@ class DifficultyCarousel extends HookWidget {
         ),
         const SizedBox(height: AppSpacing.xs),
         _PageIndicator(
-          count: Difficulty.values.length,
-          selected: Difficulty.values.indexOf(selected),
+          count: GameMode.values.length,
+          selected: GameMode.values.indexOf(selected),
         ),
       ],
     );
   }
 }
 
-class _DifficultyPage extends StatelessWidget {
-  const _DifficultyPage({
-    required this.difficulty,
+class _GameModePage extends StatelessWidget {
+  const _GameModePage({
+    required this.mode,
     required this.assetPath,
   });
 
-  final Difficulty difficulty;
+  final GameMode mode;
   final String assetPath;
 
   @override
   Widget build(BuildContext context) {
-    final theme = difficulty.theme;
+    final theme = mode.theme;
     final l10n = context.l10n;
 
     return Container(
@@ -93,35 +93,52 @@ class _DifficultyPage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  theme.title(l10n),
-                  style: context.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+            flex: 2,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          theme.title(l10n),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          theme.subtitle(l10n),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: Colors.white.withAlpha(200),
+                          ),
+                        ),
+                        const SizedBox(height: AppSpacing.xs),
+                        if (theme.difficultyLevel != null)
+                          _DifficultyIndicator(level: theme.difficultyLevel!),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  theme.subtitle(l10n),
-                  style: context.textTheme.bodySmall?.copyWith(
-                    color: Colors.white.withAlpha(200),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                _DifficultyIndicator(level: difficulty.index + 1),
-              ],
+                );
+              },
             ),
           ),
           const SizedBox(width: AppSpacing.sm),
-          Image.asset(
-            assetPath,
-            height: 80,
-            fit: BoxFit.contain,
+          Expanded(
+            child: Image.asset(
+              assetPath,
+              fit: BoxFit.contain,
+            ),
           ),
         ],
       ),
@@ -138,15 +155,14 @@ class _DifficultyIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(3, (index) {
+      children: List.generate(GameModeTheme.maxDifficultyLevel, (index) {
         final isActive = index < level;
-        return Container(
-          margin: EdgeInsets.only(right: index < 2 ? AppSpacing.xxs : 0),
-          width: 24,
-          height: 5,
-          decoration: BoxDecoration(
+        return Padding(
+          padding: EdgeInsets.only(right: index < 2 ? AppSpacing.xxs : 0),
+          child: Icon(
+            Icons.local_fire_department,
+            size: 18,
             color: isActive ? Colors.white : Colors.white.withAlpha(80),
-            borderRadius: BorderRadius.circular(2.5),
           ),
         );
       }),

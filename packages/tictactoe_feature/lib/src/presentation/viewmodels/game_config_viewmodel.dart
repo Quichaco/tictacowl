@@ -10,14 +10,14 @@ class GameConfigViewModel extends _$GameConfigViewModel {
   GameConfig build() {
     final repo = ref.read(gamePreferencesRepositoryProvider);
     return GameConfig(
-      difficulty: repo.getDifficulty(),
+      mode: repo.getGameMode(),
       rounds: repo.getRounds(),
     );
   }
 
-  void setDifficulty(Difficulty difficulty) {
-    ref.read(gamePreferencesRepositoryProvider).setDifficulty(difficulty);
-    state = state.copyWith(difficulty: difficulty);
+  void setMode(GameMode mode) {
+    ref.read(gamePreferencesRepositoryProvider).setGameMode(mode);
+    state = state.copyWith(mode: mode);
   }
 
   void setRounds(int rounds) {

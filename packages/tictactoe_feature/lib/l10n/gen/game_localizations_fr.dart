@@ -47,13 +47,22 @@ class GameLocalizationsFr extends GameLocalizations {
   String get replayButton => 'Rejouer';
 
   @override
-  String get difficultyEasy => 'Facile';
+  String get gameModeMultiplayer => '2 Joueurs';
 
   @override
-  String get difficultyMedium => 'Moyen';
+  String get gameModeEasy => 'Facile';
 
   @override
-  String get difficultyHard => 'Difficile';
+  String get gameModeMedium => 'Moyen';
+
+  @override
+  String get gameModeHard => 'Difficile';
+
+  @override
+  String get owlMultiTitle => 'Invité';
+
+  @override
+  String get owlMultiSubtitle => 'Défie un ami en local';
 
   @override
   String get owlEasyTitle => 'Hibou Sage';

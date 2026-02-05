@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
-import 'package:tictactoe_feature/src/common/models/difficulty_theme.dart';
+import 'package:tictactoe_feature/src/common/models/game_mode_theme.dart';
 import 'package:tictactoe_feature/src/common/extensions/player_extensions.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
@@ -13,15 +13,15 @@ class ScoreBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final difficulty = ref.watch(
-      gameConfigViewModelProvider.select((c) => c.difficulty),
+    final mode = ref.watch(
+      gameConfigViewModelProvider.select((c) => c.mode),
     );
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(
-          difficulty.theme.owlImageTop,
+          mode.theme.owlImageTop,
           height: 50,
         ),
         Container(
@@ -82,14 +82,14 @@ class _PlayerScoreO extends ConsumerWidget {
         isActive: s.currentPlayer == Player.o,
       )),
     );
-    final difficulty = ref.watch(
-      gameConfigViewModelProvider.select((c) => c.difficulty),
+    final mode = ref.watch(
+      gameConfigViewModelProvider.select((c) => c.mode),
     );
 
     return _PlayerScoreDisplay(
       player: Player.o,
       score: score,
-      name: difficulty.theme.title(context.l10n),
+      name: mode.theme.title(context.l10n),
       isActive: isActive,
     );
   }

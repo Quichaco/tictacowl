@@ -15,21 +15,21 @@ class GamePreferencesRepositoryImpl implements GamePreferencesRepository {
 
   final SharedPreferences _prefs;
 
-  static const _difficultyKey = 'game_difficulty';
+  static const _gameModeKey = 'game_mode';
   static const _roundsKey = 'game_rounds';
 
   @override
-  Difficulty getDifficulty() {
-    final raw = _prefs.getString(_difficultyKey);
-    return Difficulty.values.firstWhere(
-      (d) => d.name == raw,
-      orElse: () => Difficulty.easy,
+  GameMode getGameMode() {
+    final raw = _prefs.getString(_gameModeKey);
+    return GameMode.values.firstWhere(
+      (m) => m.name == raw,
+      orElse: () => GameMode.multiplayer,
     );
   }
 
   @override
-  void setDifficulty(Difficulty difficulty) {
-    _prefs.setString(_difficultyKey, difficulty.name);
+  void setGameMode(GameMode mode) {
+    _prefs.setString(_gameModeKey, mode.name);
   }
 
   @override

@@ -47,13 +47,22 @@ class GameLocalizationsEn extends GameLocalizations {
   String get replayButton => 'Replay';
 
   @override
-  String get difficultyEasy => 'Easy';
+  String get gameModeMultiplayer => '2 Players';
 
   @override
-  String get difficultyMedium => 'Medium';
+  String get gameModeEasy => 'Easy';
 
   @override
-  String get difficultyHard => 'Hard';
+  String get gameModeMedium => 'Medium';
+
+  @override
+  String get gameModeHard => 'Hard';
+
+  @override
+  String get owlMultiTitle => 'Guest';
+
+  @override
+  String get owlMultiSubtitle => 'Challenge a friend locally';
 
   @override
   String get owlEasyTitle => 'Wise Owl';

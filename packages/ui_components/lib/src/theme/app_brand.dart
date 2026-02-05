@@ -8,6 +8,7 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
     required this.tertiaryGradient,
     required this.backgroundGradient,
     required this.textSecondary,
+    required this.multiplayerGradient,
     required this.easyGradient,
     required this.mediumGradient,
     required this.hardGradient,
@@ -19,6 +20,7 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
   final LinearGradient tertiaryGradient;
   final LinearGradient backgroundGradient;
   final Color textSecondary;
+  final LinearGradient multiplayerGradient;
   final LinearGradient easyGradient;
   final LinearGradient mediumGradient;
   final LinearGradient hardGradient;
@@ -45,6 +47,11 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
       stops: [0.0, 0.5, 1.0],
     ),
     textSecondary: AppColors.textSecondaryLight,
+    multiplayerGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [AppColors.multiplayerStart, AppColors.multiplayerEnd],
+    ),
     easyGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -84,6 +91,11 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
       stops: [0.0, 0.5, 1.0],
     ),
     textSecondary: AppColors.textSecondaryDark,
+    multiplayerGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [AppColors.multiplayerEnd, AppColors.multiplayerStart],
+    ),
     easyGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -109,6 +121,7 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
     LinearGradient? tertiaryGradient,
     LinearGradient? backgroundGradient,
     Color? textSecondary,
+    LinearGradient? multiplayerGradient,
     LinearGradient? easyGradient,
     LinearGradient? mediumGradient,
     LinearGradient? hardGradient,
@@ -120,6 +133,7 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
       tertiaryGradient: tertiaryGradient ?? this.tertiaryGradient,
       backgroundGradient: backgroundGradient ?? this.backgroundGradient,
       textSecondary: textSecondary ?? this.textSecondary,
+      multiplayerGradient: multiplayerGradient ?? this.multiplayerGradient,
       easyGradient: easyGradient ?? this.easyGradient,
       mediumGradient: mediumGradient ?? this.mediumGradient,
       hardGradient: hardGradient ?? this.hardGradient,
@@ -140,6 +154,8 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
       backgroundGradient:
           LinearGradient.lerp(backgroundGradient, other.backgroundGradient, t)!,
       textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      multiplayerGradient:
+          LinearGradient.lerp(multiplayerGradient, other.multiplayerGradient, t)!,
       easyGradient:
           LinearGradient.lerp(easyGradient, other.easyGradient, t)!,
       mediumGradient:

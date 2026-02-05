@@ -25,7 +25,9 @@ abstract class AppColors {
   static const Color textSecondaryLight = Color(0xFF7A6B5E);
   static const Color textSecondaryDark = Color(0xFFA89888);
 
-  // Semantic gradients
+  // Game mode gradients
+  static const Color multiplayerStart = Color(0xFF667eea);
+  static const Color multiplayerEnd = Color(0xFF764ba2);
   static const Color easyStart = Color(0xFFA8E063);
   static const Color easyEnd = Color(0xFF56AB2F);
   static const Color mediumStart = Color(0xFFF9D423);

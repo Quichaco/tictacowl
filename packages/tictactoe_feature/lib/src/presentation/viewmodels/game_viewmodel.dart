@@ -3,9 +3,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/providers/use_case_providers.dart';
-import 'package:ui_components/ui_components.dart';
 
 part 'game_viewmodel.g.dart';
+
+const _aiDelay = Duration(milliseconds: 600);
 
 @riverpod
 class GameViewModel extends _$GameViewModel {
@@ -24,8 +25,7 @@ class GameViewModel extends _$GameViewModel {
     );
   }
 
-  Difficulty get _difficulty =>
-      ref.read(gameConfigViewModelProvider).difficulty;
+  GameMode get _mode => ref.read(gameConfigViewModelProvider).mode;
 
   void play(int index) {
     state = ref.read(playMoveUseCaseProvider)(state: state, index: index);
@@ -42,13 +42,19 @@ class GameViewModel extends _$GameViewModel {
   }
 
   Future<void> _playAiIfNeeded() async {
+    if (_mode.isMultiplayer) return;
+
     const aiPlayer = Player.o;
     if (state.isRoundOver || state.currentPlayer != aiPlayer) return;
 
-    await Future.delayed(AppDurations.extraSlow);
+    final roundBeforeDelay = state.currentRound;
+    await Future.delayed(_aiDelay);
+
+    if (state.currentRound != roundBeforeDelay) return;
+
     state = ref.read(aiMoveUseCaseProvider)(
       state: state,
-      difficulty: _difficulty,
+      mode: _mode,
       aiPlayer: aiPlayer,
     );
   }

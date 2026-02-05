@@ -4,7 +4,7 @@ library;
 export 'src/ai/ai_strategy_factory.dart';
 
 // Models
-export 'src/models/difficulty.dart';
+export 'src/models/game_mode.dart';
 export 'src/models/game_config.dart';
 export 'src/models/game_state.dart';
 export 'src/models/player.dart';

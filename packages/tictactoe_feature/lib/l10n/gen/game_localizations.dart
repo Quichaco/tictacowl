@@ -158,23 +158,41 @@ abstract class GameLocalizations {
   /// **'Replay'**
   String get replayButton;
 
-  /// No description provided for @difficultyEasy.
+  /// No description provided for @gameModeMultiplayer.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Players'**
+  String get gameModeMultiplayer;
+
+  /// No description provided for @gameModeEasy.
   ///
   /// In en, this message translates to:
   /// **'Easy'**
-  String get difficultyEasy;
+  String get gameModeEasy;
 
-  /// No description provided for @difficultyMedium.
+  /// No description provided for @gameModeMedium.
   ///
   /// In en, this message translates to:
   /// **'Medium'**
-  String get difficultyMedium;
+  String get gameModeMedium;
 
-  /// No description provided for @difficultyHard.
+  /// No description provided for @gameModeHard.
   ///
   /// In en, this message translates to:
   /// **'Hard'**
-  String get difficultyHard;
+  String get gameModeHard;
+
+  /// No description provided for @owlMultiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get owlMultiTitle;
+
+  /// No description provided for @owlMultiSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge a friend locally'**
+  String get owlMultiSubtitle;
 
   /// No description provided for @owlEasyTitle.
   ///
