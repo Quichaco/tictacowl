@@ -3,6 +3,12 @@ library;
 // L10n - export the generated localizations
 export 'l10n/gen/game_localizations.dart';
 
+// Navigation
+export 'src/navigation/game_navigator.dart';
+
+// Providers (to be overridden by app)
+export 'src/providers/player_name_provider.dart';
+
 // Constants
 export 'src/common/constants/tictactoe_assets.dart';
 

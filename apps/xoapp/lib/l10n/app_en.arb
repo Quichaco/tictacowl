@@ -1,25 +1,25 @@
 {
   "@@locale": "en",
-  "appTitle": "XO Game",
-  "welcomeTitle": "XO Game",
-  "enterName": "Enter your name",
-  "continueButton": "Continue",
-  "homeGreeting": "{name}, become the legend of the perch!",
-  "@homeGreeting": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "appTitle": "Tic Tac Owl",
+  "welcomeSubtitle": "Become the legend of the perch!",
+  "signInButton": "Sign In",
+  "createAccountButton": "Create Account",
+
   "homeGreetingSuffix": ", become the legend of the perch!",
-  "playButton": "Play",
   "homeGreetingFallback": "Become the legend of the perch!",
-  "saveUserError": "Failed to save user. Please try again.",
-  "genericError": "An error occurred. Please try again.",
-  "settingsButton": "Settings",
+  "playButton": "Play",
+  "gameModeLabel": "Game Mode",
+
   "settingsTitle": "Settings",
   "editName": "Your name",
+  "nameMinLengthError": "At least {min} characters",
+  "@nameMinLengthError": {
+    "placeholders": { "min": { "type": "int" } }
+  },
+  "nameTooLongError": "At most {max} characters",
+  "@nameTooLongError": {
+    "placeholders": { "max": { "type": "int" } }
+  },
   "themeLabel": "Theme",
   "themeLight": "Light",
   "themeDark": "Dark",
@@ -28,27 +28,14 @@
   "languageName": "English",
   "roundsLabel": "{count, plural, =1{Round} other{Rounds}}",
   "@roundsLabel": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "nameMinLengthError": "At least {min} characters",
-  "@nameMinLengthError": {
-    "placeholders": {
-      "min": {
-        "type": "int"
-      }
-    }
+    "placeholders": { "count": { "type": "int" } }
   },
   "versionLabel": "Version {version}",
   "@versionLabel": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
+    "placeholders": { "version": { "type": "String" } }
   },
-  "gameModeLabel": "Game Mode"
+  "logoutButton": "Log Out",
+
+  "saveUserError": "Failed to save. Please try again",
+  "genericError": "An error occurred. Please try again"
 }

@@ -6,6 +6,7 @@ environment:
 
 workspace:
   - apps/xoapp
+  - packages/common
   - packages/core
   - packages/tictactoe_domain
   - packages/tictactoe_feature

@@ -1,0 +1,71 @@
+{
+  "@@locale": "en",
+
+  "loginTitle": "Welcome back",
+  "loginSubtitle": "Sign in to continue",
+  "signInButton": "Sign In",
+  "noAccountText": "Don't have an account?",
+  "signUpLink": "Sign up",
+
+  "signUpTitle": "Create account",
+  "signUpEmailSubtitle": "Enter your email to get started",
+  "signUpPasswordTitle": "Secure your account",
+  "signUpPasswordSubtitle": "Choose a strong password",
+  "confirmPasswordLabel": "Confirm password",
+  "confirmPasswordHint": "Confirm your password",
+  "confirmPasswordRequiredError": "Please confirm your password",
+  "passwordsDoNotMatchError": "Passwords do not match",
+  "continueButton": "Continue",
+  "createAccountButton": "Create Account",
+  "alreadyHaveAccountText": "Already have an account?",
+  "signInLink": "Sign in",
+
+  "setUsernameTitle": "Choose your name",
+  "setUsernameSubtitle": "Your name, your legacy",
+  "usernameLabel": "Username",
+  "usernameHint": "Enter your username",
+  "letsGoButton": "Let's go!",
+
+  "forgotPasswordTitle": "Reset password",
+  "forgotPasswordSubtitle": "Enter your email and we'll send you a reset link",
+  "sendResetLinkButton": "Send reset link",
+  "backToLoginButton": "Back to login",
+  "resetLinkSentTitle": "Check your email",
+  "resetLinkSentMessage": "We've sent a password reset link to {email}",
+  "@resetLinkSentMessage": {
+    "placeholders": { "email": { "type": "String" } }
+  },
+
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "emailInvalidError": "Please enter a valid email",
+  "passwordLabel": "Password",
+  "passwordHint": "Enter your password",
+  "passwordTooShortError": "At least {min} characters",
+  "@passwordTooShortError": {
+    "placeholders": { "min": { "type": "int" } }
+  },
+  "forgotPasswordButton": "Forgot password?",
+
+  "nameTooShortError": "At least {min} characters",
+  "@nameTooShortError": {
+    "placeholders": { "min": { "type": "int" } }
+  },
+  "nameTooLongError": "At most {max} characters",
+  "@nameTooLongError": {
+    "placeholders": { "max": { "type": "int" } }
+  },
+
+  "errorInvalidEmail": "Invalid email address",
+  "errorUserDisabled": "This account has been disabled",
+  "errorUserNotFound": "No account found with this email",
+  "errorWrongPassword": "Incorrect password",
+  "errorInvalidCredential": "Invalid email or password",
+  "errorEmailAlreadyInUse": "An account already exists with this email",
+  "errorWeakPassword": "Password is too weak",
+  "errorTooManyRequests": "Too many attempts. Please try again later",
+  "errorNetworkRequestFailed": "Network error. Check your connection",
+  "errorTimeout": "Request timed out. Please try again",
+  "errorNotSignedIn": "You need to be signed in",
+  "errorUnknown": "An error occurred. Please try again"
+}

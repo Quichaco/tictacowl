@@ -9,4 +9,28 @@ extension BuildContextThemeExtensions on BuildContext {
   ColorScheme get colorScheme => theme.colorScheme;
 
   BrandTheme get brand => theme.extension<BrandTheme>()!;
+
+  ScaffoldMessengerState get _messenger => ScaffoldMessenger.of(this);
+
+  void showErrorSnackBar(String message) {
+    _messenger.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: colorScheme.error,
+      ),
+    );
+  }
+
+  void showSuccessSnackBar(String message) {
+    _messenger.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: colorScheme.primary,
+      ),
+    );
+  }
+
+  void showSnackBarMessage(String message) {
+    _messenger.showSnackBar(SnackBar(content: Text(message)));
+  }
 }

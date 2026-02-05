@@ -1,0 +1,17 @@
+name: common
+description: Pure Dart types and utilities shared across packages.
+version: 1.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  freezed_annotation: ^3.1.0
+
+dev_dependencies:
+  build_runner: ^2.11.0
+  freezed: ^3.2.3
+  lints: ^6.0.0
+  test: ^1.25.6

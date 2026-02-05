@@ -1,0 +1,5 @@
+arb-dir: lib/l10n
+template-arb-file: user_en.arb
+output-localization-file: user_localizations.dart
+output-dir: lib/l10n/gen
+output-class: UserLocalizations

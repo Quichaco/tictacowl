@@ -23,6 +23,7 @@ class XoAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: context.colorScheme.surface,
       automaticallyImplyLeading: false,
+      surfaceTintColor: Colors.transparent,
       leading: canPop
           ? IconButton.filledTonal(
               onPressed: onBackPressed ?? () => Navigator.of(context).pop(),

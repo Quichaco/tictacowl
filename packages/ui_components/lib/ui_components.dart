@@ -18,6 +18,7 @@ export 'src/widgets/buttons/control_button.dart';
 export 'src/widgets/buttons/gradient_button.dart';
 
 // Widgets — Display
+export 'src/widgets/display/error_display.dart';
 export 'src/widgets/display/gradient_border_box.dart';
 export 'src/widgets/display/xo_loader.dart';
 export 'src/widgets/display/xo_symbol.dart';

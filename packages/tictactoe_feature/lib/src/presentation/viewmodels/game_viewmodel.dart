@@ -1,7 +1,7 @@
-import 'package:core/core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
+import 'package:tictactoe_feature/src/providers/player_name_provider.dart';
 import 'package:tictactoe_feature/src/providers/use_case_providers.dart';
 
 part 'game_viewmodel.g.dart';
@@ -13,15 +13,11 @@ class GameViewModel extends _$GameViewModel {
   @override
   GameState build() {
     final config = ref.watch(gameConfigViewModelProvider);
-    final userAsync = ref.watch(userViewModelProvider);
-    final playerName = userAsync.maybeWhen(
-      data: (user) => user?.name,
-      orElse: () => null,
-    );
+    final playerName = ref.watch(playerNameProvider);
 
     return GameState.create(
       totalRounds: config.rounds,
-      playerName: playerName ?? '',
+      playerName: playerName,
     );
   }
 

@@ -1,18 +1,19 @@
 {
   "@@locale": "fr",
-  "appTitle": "XO Game",
-  "welcomeTitle": "XO Game",
-  "enterName": "Entrez votre nom",
-  "continueButton": "Continuer",
-  "homeGreeting": "{name}, deviens la légende du perchoir !",
+  "appTitle": "Tic Tac Owl",
+  "welcomeSubtitle": "Deviens la légende du perchoir !",
+  "signInButton": "Se connecter",
+  "createAccountButton": "Créer un compte",
+
   "homeGreetingSuffix": ", deviens la légende du perchoir !",
-  "playButton": "Jouer",
   "homeGreetingFallback": "Deviens la légende du perchoir !",
-  "saveUserError": "Impossible de sauvegarder. Veuillez réessayer.",
-  "genericError": "Une erreur est survenue. Veuillez réessayer.",
-  "settingsButton": "Paramètres",
+  "playButton": "Jouer",
+  "gameModeLabel": "Mode de jeu",
+
   "settingsTitle": "Paramètres",
-  "editName": "Votre nom",
+  "editName": "Ton nom",
+  "nameMinLengthError": "Au moins {min} caractères",
+  "nameTooLongError": "Au maximum {max} caractères",
   "themeLabel": "Thème",
   "themeLight": "Clair",
   "themeDark": "Sombre",
@@ -20,14 +21,9 @@
   "languageLabel": "Langue",
   "languageName": "Français",
   "roundsLabel": "{count, plural, =1{Manche} other{Manches}}",
-  "nameMinLengthError": "Au moins {min} caractères",
   "versionLabel": "Version {version}",
-  "@versionLabel": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
-  "gameModeLabel": "Mode de jeu"
+  "logoutButton": "Se déconnecter",
+
+  "saveUserError": "Échec de la sauvegarde. Réessaie",
+  "genericError": "Une erreur est survenue. Réessaie"
 }

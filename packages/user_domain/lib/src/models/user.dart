@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:user_domain/src/common/validators.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -8,40 +9,37 @@ abstract class User with _$User {
   const User._();
 
   const factory User({
+    required String uid,
     required String name,
+    required String email,
+    required DateTime createdAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  static const minNameLength = 2;
-  static const maxNameLength = 30;
+  static const minNameLength = Validators.minNameLength;
+  static const maxNameLength = Validators.maxNameLength;
 
-  static String? Function(String?) nameValidator(String minLengthError) {
-    return (value) {
-      final trimmed = value?.trim() ?? '';
-      if (trimmed.length < minNameLength) {
-        return minLengthError;
-      }
-      return null;
-    };
-  }
-
-  factory User.create({required String name}) {
-    final trimmed = name.trim();
-    if (trimmed.length < minNameLength) {
-      throw ArgumentError.value(
-        name,
-        'name',
-        'must be at least $minNameLength characters',
-      );
+  factory User.create({
+    required String uid,
+    required String name,
+    required String email,
+    DateTime? createdAt,
+  }) {
+    final trimmedName = name.trim();
+    final error = Validators.name(
+      trimmedName,
+      tooShortMessage: 'must be at least $minNameLength characters',
+      tooLongMessage: 'must be at most $maxNameLength characters',
+    );
+    if (error != null) {
+      throw ArgumentError.value(name, 'name', error);
     }
-    if (trimmed.length > maxNameLength) {
-      throw ArgumentError.value(
-        name,
-        'name',
-        'must be at most $maxNameLength characters',
-      );
-    }
-    return User(name: trimmed);
+    return User(
+      uid: uid,
+      name: trimmedName,
+      email: email,
+      createdAt: createdAt ?? DateTime.now(),
+    );
   }
 }

@@ -17,6 +17,7 @@ pubspec.lock
 # Generated files
 *.g.dart
 *.freezed.dart
+**/l10n/gen/
 
 # OS
 .DS_Store

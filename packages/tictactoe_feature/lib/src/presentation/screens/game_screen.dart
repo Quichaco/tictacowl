@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tictactoe_domain/tictactoe_domain.dart';
 import 'package:tictactoe_feature/src/common/extensions/build_context_extensions.dart';
 import 'package:tictactoe_feature/src/common/models/game_mode_theme.dart';
+import 'package:tictactoe_feature/src/navigation/game_navigator.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_config_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/viewmodels/game_viewmodel.dart';
 import 'package:tictactoe_feature/src/presentation/widgets/board/game_grid.dart';
@@ -16,11 +17,13 @@ class GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final navigator = ref.read(gameNavigatorProvider);
+
     ref.listen(
       gameViewModelProvider.select((s) => s.isRoundOver),
       (wasGameOver, isRoundOver) {
         if (isRoundOver && wasGameOver == false) {
-          _showVictoryDialog(context, ref);
+          _showVictoryDialog(context, ref, navigator);
         }
       },
     );
@@ -29,13 +32,12 @@ class GameScreen extends ConsumerWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
         if (didPop) return;
-        await _handleQuit(context);
+        await _handleQuit(context, navigator);
       },
       child: Scaffold(
         appBar: XoAppBar(
-          onBackPressed: () => _handleQuit(context),
+          onBackPressed: () => _handleQuit(context, navigator),
         ),
-        extendBodyBehindAppBar: true,
         body: SafeArea(
           child: Padding(
             padding: AppSpacing.screenPadding,
@@ -59,7 +61,7 @@ class GameScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _handleQuit(BuildContext context) async {
+  Future<void> _handleQuit(BuildContext context, GameNavigator navigator) async {
     final l10n = context.l10n;
     final shouldQuit = await ConfirmationDialog.show(
       context: context,
@@ -70,11 +72,15 @@ class GameScreen extends ConsumerWidget {
       icon: Icons.exit_to_app,
     );
     if (shouldQuit && context.mounted) {
-      Navigator.of(context).pop();
+      navigator.exitToHome();
     }
   }
 
-  Future<void> _showVictoryDialog(BuildContext context, WidgetRef ref) async {
+  Future<void> _showVictoryDialog(
+    BuildContext context,
+    WidgetRef ref,
+    GameNavigator navigator,
+  ) async {
     final state = ref.read(gameViewModelProvider);
     final mode = ref.read(gameConfigViewModelProvider).mode;
     final l10n = context.l10n;
@@ -114,7 +120,7 @@ class GameScreen extends ConsumerWidget {
       case VictoryDialogResult.replay:
         ref.read(gameViewModelProvider.notifier).restart();
       case VictoryDialogResult.quit:
-        Navigator.of(context).pop();
+        navigator.exitToHome();
       case null:
         break;
     }
