@@ -99,17 +99,17 @@ class BrandTheme extends ThemeExtension<BrandTheme> {
     easyGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [AppColors.easyEnd, AppColors.easyStart],
+      colors: [AppColors.easyStart,AppColors.easyEnd,],
     ),
     mediumGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [AppColors.mediumEnd, AppColors.mediumStart],
+      colors: [AppColors.mediumStart,AppColors.mediumEnd],
     ),
     hardGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [AppColors.hardEnd, AppColors.hardStart],
+      colors: [AppColors.hardStart, AppColors.hardEnd],
     ),
     gold: AppColors.gold,
   );

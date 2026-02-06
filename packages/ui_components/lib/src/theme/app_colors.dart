@@ -28,12 +28,12 @@ abstract class AppColors {
   // Game mode gradients
   static const Color multiplayerStart = Color(0xFF667eea);
   static const Color multiplayerEnd = Color(0xFF764ba2);
-  static const Color easyStart = Color(0xFFA8E063);
-  static const Color easyEnd = Color(0xFF56AB2F);
-  static const Color mediumStart = Color(0xFFF9D423);
-  static const Color mediumEnd = Color(0xFFE65C00);
-  static const Color hardStart = Color(0xFFE57373);
-  static const Color hardEnd = Color(0xFFC62828);
+  static const Color easyStart = Color(0xFF56AB2F);
+  static const Color easyEnd = Color(0xFFA8E063);
+  static const Color mediumStart = Color(0xFFE65C00);
+  static const Color mediumEnd = Color(0xFFF9D423);
+  static const Color hardStart = Color(0xFFC62828);
+  static const Color hardEnd = Color(0xFFE57373);
 
   // Feedback colors
   static const Color gold = Color(0xFFFFD700);
