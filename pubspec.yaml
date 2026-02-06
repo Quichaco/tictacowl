@@ -24,17 +24,13 @@ melos:
       description: Run static analysis in all packages
 
     test:
-      run: melos exec --fail-fast -- "dart test"
-      description: Run Dart tests in all packages (Flutter tests are separate)
+      run: melos exec --dir-exists="test" --no-flutter -- dart test
+      description: Run Dart tests in all Dart packages
 
     flutter_test:
-      run: melos exec --fail-fast --flutter -- "flutter test"
-      description: Run flutter test in flutter packages
+      run: melos exec --dir-exists="test" --flutter -- flutter test
+      description: Run Flutter tests in all Flutter packages
 
     gen:
       run: melos exec --fail-fast -- "dart run build_runner build --delete-conflicting-outputs"
       description: Run build_runner in all packages
-
-    l10n:
-      run: melos exec --file-exists=l10n.yaml -- "flutter gen-l10n"
-      description: Generate l10n files in packages with l10n.yaml

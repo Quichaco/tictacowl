@@ -144,7 +144,13 @@ class _LanguageSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final locale = ref.watch(localeViewModelProvider);
+    final savedLocale = ref.watch(localeViewModelProvider);
+
+    final effectiveLocale = savedLocale ??
+        AppLocalizations.supportedLocales.firstWhere(
+          (l) => l.languageCode == Localizations.localeOf(context).languageCode,
+          orElse: () => AppLocalizations.supportedLocales.first,
+        );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,11 +160,10 @@ class _LanguageSection extends ConsumerWidget {
         SelectField<Locale>(
           title: l10n.languageLabel,
           values: AppLocalizations.supportedLocales,
-          selected: locale ?? AppLocalizations.supportedLocales.first,
+          selected: effectiveLocale,
           labelOf: (l) => l.nativeName,
           iconOf: (_) => Icons.translate,
-          onSelected: (l) =>
-              ref.read(localeViewModelProvider.notifier).setLocale(l),
+          onSelected: ref.read(localeViewModelProvider.notifier).setLocale,
         ),
       ],
     );

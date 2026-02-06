@@ -37,13 +37,6 @@ class SignUpScreen extends HookConsumerWidget {
       );
     }
 
-    void goToPreviousPage() {
-      pageController.previousPage(
-        duration: AppDurations.medium,
-        curve: Curves.easeInOut,
-      );
-    }
-
     void submitEmail() {
       if (emailFormKey.currentState?.validate() ?? false) {
         goToNextPage();
