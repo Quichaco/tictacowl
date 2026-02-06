@@ -1,16 +1,24 @@
 # xoapp
 
-A new Flutter project.
+Main Flutter application for Tic Tac Owl.
 
-## Getting Started
+## Role
 
-This project is a starting point for a Flutter application.
+**App Layer** - Assembles all packages and handles:
+- Dependency injection (Riverpod)
+- Navigation (GoRouter)
+- Theming & Localization
+- Firebase initialization
 
-A few resources to get you started if this is your first Flutter project:
+## Screens
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- `WelcomeScreen` - Landing page
+- `HomeScreen` - Game setup (difficulty, rounds)
+- `SettingsScreen` - Profile, theme, language
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run
+
+```bash
+flutter run
+flutter test
+```
